@@ -112,17 +112,6 @@ namespace File_Information
                 //string type = f.Extension.ToString();
                 string type = label2.Text;
 
-                //дата создания
-                //string dateCreate = f.CreationTime.ToString();
-                //string dateCreate = label3.Text;
-                string dateCreate = DateTime.Parse(label3.Text);
-
-                //DateTime dt = Convert.ToDateTime(dateCreate);
-
-
-                //дата изменения
-                //string dateChange = f.LastWriteTime.ToString();
-                string dateChange = label4.Text;
                 //размер
                 //string size = (f.Length / 1024).ToString();
                 string size = label7.Text;
@@ -130,9 +119,8 @@ namespace File_Information
                 // передаем данные в команду через параметры
                 command.Parameters["@Title"].Value = title;
                 command.Parameters["@Type"].Value = type;
-                //command.Parameters["@DateCreate"].Value = dateCreate;
-                command.Parameters["@DateCreate"].Value = dateCreate;
-                command.Parameters["@DateChange"].Value = dateChange;
+                command.Parameters["@DateCreate"].Value = dateTimePicker1.Value.Date;
+                command.Parameters["@DateChange"].Value = dateTimePicker2.Value.Date;
                 command.Parameters["@Size"].Value = size;
 
                 command.ExecuteNonQuery();
