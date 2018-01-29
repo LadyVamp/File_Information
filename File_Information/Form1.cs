@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace File_Information
 {
@@ -50,30 +51,94 @@ namespace File_Information
         public void LoadMyRtf()
         {
             OpenFileDialog f = new OpenFileDialog();
-
             f.DefaultExt = "*.rtf";
             f.Filter = "RTF Files|*.rtf";
-
-            if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
-               f.FileName.Length > 0)
+            if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
             {
                 richTextBox1.LoadFile(f.FileName);
                 GetFileInformation(f.FileName);
             }
         }
 
-        private void GetFileInformation(string fileName)
+        public void GetFileInformation(string FileName)
         {
-            FileInfo f = new FileInfo(fileName);
+            FileInfo f = new FileInfo(FileName);
 
-            label1.Text = "Name - " + f.Name.ToString();
-            label2.Text = "File Extension - " + f.Extension;
-            label3.Text = "Creation Time - " + f.CreationTime.ToString();
-            label4.Text = "Last Access Time - " + f.LastAccessTime.ToString();
-            label5.Text = "Last Write Time - " + f.LastWriteTime.ToString();
-            label6.Text = "Directory Name - " + f.DirectoryName;
-            label7.Text = "Full Name - " + f.FullName;
-            label8.Text = "File Size - " + (f.Length / 1024).ToString() + "KB";
+            label1.Text = "Title - " + f.Name.ToString();
+            label2.Text = "Type - " + f.Extension;
+            label3.Text = "Date Create - " + f.CreationTime.ToString();
+            label4.Text = "Date Change - " + f.LastWriteTime.ToString();
+            label5.Text = "Path - " + f.DirectoryName;
+            label6.Text = "Full Path - " + f.FullName;
+            label7.Text = "Size - " + (f.Length / 1024).ToString() + "KB";
         }
+
+        public void button2_Click(object sender, EventArgs e)
+        {
+            SaveFileToDatabase();
+        }
+
+        public void SaveFileToDatabase()
+        {
+            string connectionString = @"Data Source=DESKTOP-O9H5H8N;Initial Catalog=RepositoryDB4;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandText = @"INSERT INTO TFile VALUES (@Title, @Type, @DateCreate,  @DateChange, @Size, @Filecontent)";
+                command.Parameters.Add("@Title", SqlDbType.NVarChar, 130);
+                command.Parameters.Add("@Type", SqlDbType.NVarChar, 10);
+                command.Parameters.Add("@DateCreate", SqlDbType.DateTime);
+                command.Parameters.Add("@DateChange", SqlDbType.DateTime);
+                command.Parameters.Add("@Size", SqlDbType.Float);
+                //command.Parameters.Add("@Keywords", SqlDbType.NVarChar, 100);
+                command.Parameters.Add("@Filecontent", SqlDbType.NVarChar, 10000);
+                //command.Parameters.Add("@CatalogId", SqlDbType.Int);
+
+
+                //FileInfo f = new FileInfo(FileName);
+
+                //путь к файлу для загрузки
+                //string filename = @"C:\Users\Eugene\Pictures\cats.jpg";
+                //string path = f.FullName;
+                string path = label6.Text;
+
+                // заголовок файла
+                //string title = f.Name.ToString();
+                string title = label1.Text;
+
+                //расширение
+                //string type = f.Extension.ToString();
+                string type = label2.Text;
+
+                //дата создания
+                //string dateCreate = f.CreationTime.ToString();
+                //string dateCreate = label3.Text;
+                string dateCreate = DateTime.Parse(label3.Text);
+
+                //DateTime dt = Convert.ToDateTime(dateCreate);
+
+
+                //дата изменения
+                //string dateChange = f.LastWriteTime.ToString();
+                string dateChange = label4.Text;
+                //размер
+                //string size = (f.Length / 1024).ToString();
+                string size = label7.Text;
+
+                // передаем данные в команду через параметры
+                command.Parameters["@Title"].Value = title;
+                command.Parameters["@Type"].Value = type;
+                //command.Parameters["@DateCreate"].Value = dateCreate;
+                command.Parameters["@DateCreate"].Value = dateCreate;
+                command.Parameters["@DateChange"].Value = dateChange;
+                command.Parameters["@Size"].Value = size;
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        
     }
 }
