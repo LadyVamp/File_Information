@@ -33,7 +33,7 @@ namespace File_Information
             // Create an OpenFileDialog to request a file to open.
             OpenFileDialog f = new OpenFileDialog();
 
-            // Initialize the OpenFileDialog to look for RTF files.
+            // Initialize the OpenFileDialog to look for DOC files.
             f.DefaultExt = "*.doc";
             f.Filter = "DOC Files|*.doc";
 
@@ -43,12 +43,8 @@ namespace File_Information
             {
                 // Load the contents of the file into the RichTextBox.
                 richTextBox1.LoadFile(f.FileName);
-            }
-
-            //if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{
                 GetFileInformation(f.FileName);
-            //}
+            }
         }
 
         public void LoadMyRtf()
@@ -62,12 +58,8 @@ namespace File_Information
                f.FileName.Length > 0)
             {
                 richTextBox1.LoadFile(f.FileName);
-            }
-
-            //if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{
                 GetFileInformation(f.FileName);
-            //}
+            }
         }
 
         private void GetFileInformation(string fileName)
