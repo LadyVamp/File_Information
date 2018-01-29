@@ -86,35 +86,26 @@ namespace File_Information
                 connection.Open();
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = @"INSERT INTO TFile VALUES (@Title, @Type, @DateCreate,  @DateChange, @Size, @Filecontent)";
+                command.CommandText = @"INSERT INTO TFile VALUES (@Title, @Type, @DateCreate,  @DateChange, @Size, @Keywords, @Filecontent, @CatalogId)";
                 command.Parameters.Add("@Title", SqlDbType.NVarChar, 130);
                 command.Parameters.Add("@Type", SqlDbType.NVarChar, 10);
                 command.Parameters.Add("@DateCreate", SqlDbType.DateTime);
                 command.Parameters.Add("@DateChange", SqlDbType.DateTime);
-                command.Parameters.Add("@Size", SqlDbType.Float);
-                //command.Parameters.Add("@Keywords", SqlDbType.NVarChar, 100);
+                command.Parameters.Add("@Size", SqlDbType.Int);
+                command.Parameters.Add("@Keywords", SqlDbType.NVarChar, 100);
                 command.Parameters.Add("@Filecontent", SqlDbType.NVarChar, 10000);
-                //command.Parameters.Add("@CatalogId", SqlDbType.Int);
+                command.Parameters.Add("@CatalogId", SqlDbType.Int);
 
-
-                //FileInfo f = new FileInfo(FileName);
-
-                //путь к файлу для загрузки
-                //string filename = @"C:\Users\Eugene\Pictures\cats.jpg";
-                //string path = f.FullName;
-                string path = label6.Text;
-
-                // заголовок файла
-                //string title = f.Name.ToString();
-                string title = label1.Text;
-
-                //расширение
-                //string type = f.Extension.ToString();
-                string type = label2.Text;
+                string path = label6.Text;  //путь к файлу для загрузки
+                string title = label1.Text;  // заголовок файла
+                string type = label2.Text; //расширение
 
                 //размер
-                //string size = (f.Length / 1024).ToString();
                 string size = label7.Text;
+                //string size = Int32.Parse(label7.Text);
+                //string size = int.Parse(label7.Text); 
+
+                string fileContent = richTextBox1.Text; //содержимое
 
                 // передаем данные в команду через параметры
                 command.Parameters["@Title"].Value = title;
@@ -122,6 +113,11 @@ namespace File_Information
                 command.Parameters["@DateCreate"].Value = dateTimePicker1.Value.Date;
                 command.Parameters["@DateChange"].Value = dateTimePicker2.Value.Date;
                 command.Parameters["@Size"].Value = size;
+                //command.Parameters["@Size"].Value = Int32.Parse(size); 
+                //command.Parameters["@Size"].Value = 123;
+                command.Parameters["@Keywords"].Value = "test123";
+                command.Parameters["@Filecontent"].Value = fileContent;
+                command.Parameters["@CatalogId"].Value = 1;
 
                 command.ExecuteNonQuery();
             }
