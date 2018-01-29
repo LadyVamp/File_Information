@@ -1,0 +1,8 @@
+c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\bin\Debug\File_Information.exe
+c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\bin\Debug\File_Information.pdb
+c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\obj\Debug\File_Information.csprojResolveAssemblyReference.cache
+c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\obj\Debug\File_Information.Form1.resources
+c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\obj\Debug\File_Information.Properties.Resources.resources
+c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\obj\Debug\File_Information.csproj.GenerateResource.Cache
+c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\obj\Debug\File_Information.exe
+c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\obj\Debug\File_Information.pdb
