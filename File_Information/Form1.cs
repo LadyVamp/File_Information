@@ -19,12 +19,17 @@ namespace File_Information
             InitializeComponent();
             rbDoc.Checked = true;
         }
-
+        /* LoadFile 
+         * поддерживает rtf, doc
+         * не поддерживает html, docx, pdf, txt, odt, xml ...
+        */
         private void button1_Click(object sender, EventArgs e)
         {
-            if ((rbDoc.Checked == true) && (rbRtf.Checked == false))
+            if ((rbDoc.Checked == true) && (rbRtf.Checked == false) && (rbDocx.Checked == false))
                 LoadMyDoc();
-            else if ((rbRtf.Checked == true) && (rbDoc.Checked == false))
+            else if ((rbDocx.Checked == true) && (rbDoc.Checked == false) && (rbRtf.Checked == false))
+                LoadMyDocx();
+            else if ((rbRtf.Checked == true) && (rbDoc.Checked == false) && (rbDocx.Checked == false))
                 LoadMyRtf();
         }
 
@@ -42,6 +47,19 @@ namespace File_Information
                f.FileName.Length > 0)
             {
                 // Load the contents of the file into the RichTextBox.
+                richTextBox1.LoadFile(f.FileName);
+                GetFileInformation(f.FileName);
+            }
+        }
+
+        //      TEST!!!
+        public void LoadMyDocx()
+        {
+            OpenFileDialog f = new OpenFileDialog();
+            f.DefaultExt = "*.xml";
+            f.Filter = "XML Files|*.xml";
+            if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
+            {
                 richTextBox1.LoadFile(f.FileName);
                 GetFileInformation(f.FileName);
             }
@@ -113,7 +131,25 @@ namespace File_Information
                 command.Parameters["@Filecontent"].Value = fileContent;
                 command.Parameters["@CatalogId"].Value = 1;
 
-                command.ExecuteNonQuery();
+                //command.ExecuteNonQuery();
+                try
+                {
+                    if (command.ExecuteNonQuery() > 0)
+                    {
+                        MessageBox.Show("Файл успешно добавлен в БД");
+                    }
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    connection.Close();
+                }
+
+
+
+              
+               
             }
         }
 

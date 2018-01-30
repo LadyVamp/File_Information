@@ -49,6 +49,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.rbDocx = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // label1
@@ -98,7 +99,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(159, 32);
+            this.button1.Location = new System.Drawing.Point(227, 28);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(143, 29);
             this.button1.TabIndex = 8;
@@ -138,7 +139,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(359, 32);
+            this.button2.Location = new System.Drawing.Point(424, 28);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 29);
             this.button2.TabIndex = 12;
@@ -243,11 +244,23 @@
             this.label14.TabIndex = 23;
             this.label14.Text = "Full Path:";
             // 
+            // rbDocx
+            // 
+            this.rbDocx.AutoSize = true;
+            this.rbDocx.Location = new System.Drawing.Point(121, 32);
+            this.rbDocx.Name = "rbDocx";
+            this.rbDocx.Size = new System.Drawing.Size(52, 21);
+            this.rbDocx.TabIndex = 24;
+            this.rbDocx.TabStop = true;
+            this.rbDocx.Text = "test";
+            this.rbDocx.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(616, 468);
+            this.Controls.Add(this.rbDocx);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -299,6 +312,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RadioButton rbDocx;
     }
 }
 
