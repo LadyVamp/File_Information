@@ -48,6 +48,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.rbDocx = new System.Windows.Forms.RadioButton();
+            this.button3 = new System.Windows.Forms.Button();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -237,11 +239,31 @@
             this.rbDocx.Text = "test";
             this.rbDocx.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(424, 77);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(143, 35);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "Ключевые слова";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(424, 123);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(143, 96);
+            this.richTextBox2.TabIndex = 26;
+            this.richTextBox2.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(616, 468);
+            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.rbDocx);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
@@ -291,6 +313,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RadioButton rbDocx;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 

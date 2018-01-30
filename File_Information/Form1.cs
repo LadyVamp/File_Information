@@ -113,11 +113,11 @@ namespace File_Information
                 command.Parameters.Add("@Filecontent", SqlDbType.NVarChar, 10000);
                 command.Parameters.Add("@CatalogId", SqlDbType.Int);
 
-                string path = label6.Text;  //путь к файлу для загрузки
                 string title = label1.Text; // заголовок файла
                 string type = label2.Text; // расширение
                 string dateCreate = label3.Text; // дата создания
                 string dateChange = label4.Text; //  дата изменения
+                string path = label6.Text;  //путь к файлу для загрузки
                 string size = label7.Text; // размер
                 string fileContent = richTextBox1.Text; // содержимое
 
@@ -152,6 +152,21 @@ namespace File_Information
             }
         }
 
-        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // v1 не учитывает окончания
+            richTextBox1.SelectedText.ToLower();
+            string[] textArray = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            var result = textArray.GroupBy(x => x)
+                              .Where(x => x.Count() > 1)
+                              .Select(x => new { Word = x.Key, Frequency = x.Count() });
+
+            foreach (var item in result)
+            {
+                richTextBox2.Text = ("Слово: " + item.Word + "\nКоличество повторов: " + item.Frequency);
+            }
+
+
+        }
     }
 }
