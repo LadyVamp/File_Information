@@ -56,8 +56,8 @@ namespace File_Information
         public void LoadMyDocx()
         {
             OpenFileDialog f = new OpenFileDialog();
-            f.DefaultExt = "*.xml";
-            f.Filter = "XML Files|*.xml";
+            f.DefaultExt = "*.docx";
+            f.Filter = "DOCX Files|*.docx";
             if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
             {
                 richTextBox1.LoadFile(f.FileName);
@@ -116,14 +116,16 @@ namespace File_Information
                 string path = label6.Text;  //путь к файлу для загрузки
                 string title = label1.Text; // заголовок файла
                 string type = label2.Text; // расширение
+                string dateCreate = label3.Text; // дата создания
+                string dateChange = label4.Text; //  дата изменения
                 string size = label7.Text; // размер
                 string fileContent = richTextBox1.Text; // содержимое
 
                 // передаем данные в команду через параметры
                 command.Parameters["@Title"].Value = title;
                 command.Parameters["@Type"].Value = type;
-                command.Parameters["@DateCreate"].Value = dateTimePicker1.Value.Date;
-                command.Parameters["@DateChange"].Value = dateTimePicker2.Value.Date;
+                command.Parameters["@DateCreate"].Value = dateCreate;
+                command.Parameters["@DateChange"].Value = dateChange;
                 command.Parameters["@Size"].Value = size;
                 command.Parameters["@Keywords"].Value = "test123";
                 command.Parameters["@Filecontent"].Value = fileContent;
