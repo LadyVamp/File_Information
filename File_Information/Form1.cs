@@ -20,8 +20,8 @@ namespace File_Information
             rbDoc.Checked = true;
         }
         /* LoadFile 
-         * поддерживает rtf, doc
-         * не поддерживает html, docx, pdf, txt, odt, xml ...
+         * +поддерживает rtf, doc
+         * -не поддерживает html, docx, pdf, txt, odt, xml ...
         */
         private void button1_Click(object sender, EventArgs e)
         {
@@ -87,7 +87,6 @@ namespace File_Information
             label4.Text = f.LastWriteTime.ToString();
             label5.Text = f.DirectoryName;
             label6.Text = f.FullName;
-            //label7.Text = "Size - " + (f.Length / 1024).ToString() + "KB"; //не верно
             label7.Text = (f.Length / 1024).ToString(); //верно, не пихать строку к int!
         }
 
@@ -126,12 +125,10 @@ namespace File_Information
                 command.Parameters["@DateCreate"].Value = dateTimePicker1.Value.Date;
                 command.Parameters["@DateChange"].Value = dateTimePicker2.Value.Date;
                 command.Parameters["@Size"].Value = size;
-                //command.Parameters["@Size"].Value = Convert.ToInt32(size); //входная строка имела неверный формат
                 command.Parameters["@Keywords"].Value = "test123";
                 command.Parameters["@Filecontent"].Value = fileContent;
                 command.Parameters["@CatalogId"].Value = 1;
 
-                //command.ExecuteNonQuery();
                 try
                 {
                     if (command.ExecuteNonQuery() > 0)
