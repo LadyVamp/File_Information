@@ -28,7 +28,6 @@ namespace File_Information
                 LoadMyRtf();
         }
 
-
         public void LoadMyDoc()
         {
             // Create an OpenFileDialog to request a file to open.
@@ -64,13 +63,14 @@ namespace File_Information
         {
             FileInfo f = new FileInfo(FileName);
 
-            label1.Text = "Title - " + f.Name.ToString();
-            label2.Text = "Type - " + f.Extension;
-            label3.Text = "Date Create - " + f.CreationTime.ToString();
-            label4.Text = "Date Change - " + f.LastWriteTime.ToString();
-            label5.Text = "Path - " + f.DirectoryName;
-            label6.Text = "Full Path - " + f.FullName;
-            label7.Text = "Size - " + (f.Length / 1024).ToString() + "KB";
+            label1.Text = f.Name.ToString();
+            label2.Text = f.Extension;
+            label3.Text = f.CreationTime.ToString();
+            label4.Text = f.LastWriteTime.ToString();
+            label5.Text = f.DirectoryName;
+            label6.Text = f.FullName;
+            //label7.Text = "Size - " + (f.Length / 1024).ToString() + "KB"; //не верно
+            label7.Text = (f.Length / 1024).ToString(); //верно, не пихать строку к int!
         }
 
         public void button2_Click(object sender, EventArgs e)
@@ -97,15 +97,10 @@ namespace File_Information
                 command.Parameters.Add("@CatalogId", SqlDbType.Int);
 
                 string path = label6.Text;  //путь к файлу для загрузки
-                string title = label1.Text;  // заголовок файла
-                string type = label2.Text; //расширение
-
-                //размер
-                string size = label7.Text;
-                //string size = Int32.Parse(label7.Text);
-                //string size = int.Parse(label7.Text); 
-
-                string fileContent = richTextBox1.Text; //содержимое
+                string title = label1.Text; // заголовок файла
+                string type = label2.Text; // расширение
+                string size = label7.Text; // размер
+                string fileContent = richTextBox1.Text; // содержимое
 
                 // передаем данные в команду через параметры
                 command.Parameters["@Title"].Value = title;
@@ -113,8 +108,7 @@ namespace File_Information
                 command.Parameters["@DateCreate"].Value = dateTimePicker1.Value.Date;
                 command.Parameters["@DateChange"].Value = dateTimePicker2.Value.Date;
                 command.Parameters["@Size"].Value = size;
-                //command.Parameters["@Size"].Value = Int32.Parse(size); 
-                //command.Parameters["@Size"].Value = 123;
+                //command.Parameters["@Size"].Value = Convert.ToInt32(size); //входная строка имела неверный формат
                 command.Parameters["@Keywords"].Value = "test123";
                 command.Parameters["@Filecontent"].Value = fileContent;
                 command.Parameters["@CatalogId"].Value = 1;
