@@ -154,7 +154,7 @@ namespace File_Information
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // v1 не учитывает окончания
+            //// v1 находит точное соответствие, не учитывает окончания
             richTextBox1.SelectedText.ToLower();
             string[] textArray = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';' }, StringSplitOptions.RemoveEmptyEntries);
             var result = textArray.GroupBy(x => x)
@@ -165,6 +165,73 @@ namespace File_Information
             {
                 richTextBox2.Text = ("Слово: " + item.Word + "\nКоличество повторов: " + item.Frequency);
             }
+
+            //v2 не работает
+            ////var x = File.ReadAllText("Your path to file");
+            //var x =  richTextBox1.SelectedText.ToLower();
+            //var words = x.Split(' ', '-', ':', '.', '"', '\'', '!', '?').Where(q => !string.IsNullOrEmpty(q));
+            //var uniqWrds = words.Select(q => q.ToLower().Trim()).Distinct();
+            //var result = new Dictionary<string, int>();
+            //foreach (var word in uniqWrds)
+            //{
+            //    result.Add(word, words.Count(q => q.ToLower().Equals(word)));
+            //}
+            //result = result.OrderByDescending(q => q.Value).ToList().Take(5).ToDictionary(key => key.Key, value => value.Value);
+            //foreach (var word in result)
+            //{
+            //    //richTextBox2.Text=("Word: {word.Key}. Count: {word.Value}");
+            //    richTextBox2.Text = ("Слово: " + word.Key + "\nКоличество повторов: " + word.Value);
+            //}
+            ////Console.ReadKey();
+
+            ////v3
+            //if (string.IsNullOrEmpty(richTextBox1.Text) || richTextBox1.Text.Length != 1) MessageBox.Show("Не все поля заполнены!");
+            //else
+            //{
+            //    string text = richTextBox1.Text;
+            //    char c = Char.Parse(richTextBox1.Text);
+            //    int count = 0;
+
+            //    for (int i = 0; i < text.Length; i++)
+            //    {
+            //        if (text[i] == c) count++;
+            //    }
+            //    richTextBox2.Text = count.ToString();
+            //}
+
+
+            //v4 не работает
+            ////string text = "шел шел зашел зашел зашел пришел пришел пришел пришел ушел ушел ушел ушел ушел";
+            //string text = richTextBox1.SelectedText;
+            ////Приведем текст в массив слов
+            //string[] ArString = text.Split(new char[] { ' ' });
+            //Dictionary<string, int> dr = new Dictionary<string, int>();
+            ////Размещаем слова в словаре и подсчитываем частотность
+            //foreach (string s in ArString)
+            //    if (dr.Keys.Contains(s)) dr[s]++;
+            //    else dr.Add(s, 1);
+            //string S = ""; int k = 0;
+            ////Отбираем 10 наиболее частотных слов и в нашем случае отображем их в сообщении
+            //foreach (KeyValuePair<string, int> kk in dr.OrderByDescending(x => x.Value))
+            //{
+            //    S += kk.Key + " " + kk.Value.ToString() + "\n";
+            //    if (k == 10) break;
+            //}
+            //MessageBox.Show(S);
+
+
+            //const string delimitr = " ,.!?";
+            ////var words = File.ReadAllText("text.txt")
+            //var words = richTextBox1.SelectedText
+            //    .Split(delimitr.ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+            //    .GroupBy(s => s).ToDictionary(s => new KeyValuePair<string, int>(s.Key, s.Count()));
+            //foreach (var i in words)
+            //    //Console.WriteLine("{0}: {1}", i.Key, i.Value);
+            //    richTextBox2.Text = ("Слово: " + i.Key + "\nКоличество повторов: " + i.Value);
+
+
+
+
 
 
         }
