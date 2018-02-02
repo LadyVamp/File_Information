@@ -99,9 +99,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(227, 28);
+            this.button1.Location = new System.Drawing.Point(202, 28);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 29);
+            this.button1.Size = new System.Drawing.Size(132, 35);
             this.button1.TabIndex = 8;
             this.button1.Text = "Выбрать файл";
             this.button1.UseVisualStyleBackColor = true;
@@ -109,9 +109,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(64, 314);
+            this.richTextBox1.Location = new System.Drawing.Point(64, 328);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(503, 142);
+            this.richTextBox1.Size = new System.Drawing.Size(953, 178);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
@@ -139,9 +139,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(424, 28);
+            this.button2.Location = new System.Drawing.Point(351, 28);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(143, 29);
+            this.button2.Size = new System.Drawing.Size(131, 35);
             this.button2.TabIndex = 12;
             this.button2.Text = "Загрузить в БД";
             this.button2.UseVisualStyleBackColor = true;
@@ -241,7 +241,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(424, 77);
+            this.button3.Location = new System.Drawing.Point(509, 28);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(143, 35);
             this.button3.TabIndex = 25;
@@ -251,9 +251,9 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(424, 123);
+            this.richTextBox2.Location = new System.Drawing.Point(509, 69);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(143, 96);
+            this.richTextBox2.Size = new System.Drawing.Size(508, 231);
             this.richTextBox2.TabIndex = 26;
             this.richTextBox2.Text = "";
             // 
@@ -261,7 +261,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 468);
+            this.ClientSize = new System.Drawing.Size(1029, 545);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.rbDocx);
