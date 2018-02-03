@@ -50,6 +50,8 @@ namespace File_Information
                 // Load the contents of the file into the RichTextBox.
                 richTextBox1.LoadFile(f.FileName);
                 GetFileInformation(f.FileName);
+                //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+                richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
             }
         }
 
@@ -63,6 +65,8 @@ namespace File_Information
             {
                 richTextBox1.LoadFile(f.FileName);
                 GetFileInformation(f.FileName);
+                //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+                richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
             }
         }
 
@@ -76,6 +80,8 @@ namespace File_Information
             {
                 richTextBox1.LoadFile(f.FileName);
                 GetFileInformation(f.FileName);
+                //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+                richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
             }
         }
 
@@ -218,109 +224,11 @@ namespace File_Information
             return s;
         }
 
-        //private void button3_Click(object sender, EventArgs e)
-        //{
-        //    string[] slova = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';', }, StringSplitOptions.RemoveEmptyEntries); //разбить текст на слова
-        //    int kol = slova.Length;
-        //    int sim = richTextBox1.Text.Length;
-        //    richTextBox2.Text = " Количество слов в тексте: " + kol.ToString() + "\n\n " + "Двадцать наиболее повторяющихся слов в тексте:\n";
-        //    int pov = slova.Length;
-
-        //    string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", Environment.NewLine };
-        //    List<string> list = new List<string>();
-        //    list = richTextBox1.Text.Split(splits, StringSplitOptions.RemoveEmptyEntries).ToList();
-        //    List<Word> words = new List<Word>();
-        //    var duplicate_words = list.GroupBy(x => x.ToLower()).Where(x => x.Count() > 1).Select(x => x.Key.ToLower());
-
-        //    foreach (string value in duplicate_words.ToList())
-        //    {
-        //        Regex reg = new Regex(value + " ", RegexOptions.IgnoreCase);
-        //        int n = 0;
-        //        foreach (Match match in reg.Matches(richTextBox1.Text))
-        //        {
-        //            richTextBox1.Select(match.Index, match.Length);
-        //            //richTextBox1.SelectionColor = Color.Red;
-        //            //richTextBox1.DeselectAll();
-        //            n++;
-        //        }
-
-        //        //richTextBox1.SelectionStart = richTextBox1.TextLength;
-        //        //richTextBox1.SelectionColor = Color.Black; 
-
-        //        words.Add(new Word(value, n));
-        //    }
-
-        //    words.Sort(comparase);
-        //    if (words.Count >= 20) words.RemoveRange(20, words.Count - 20);
-
-        //    foreach (Word item in words)
-        //        richTextBox2.AppendText("\n" + item.word + " - " + item.count.ToString());
-
-        //}
-
-
-        //public void wordCount(string[] words, List<string> predlogs)
-        //{
-        //    int wordCount = 0;
-        //    foreach (var word in words)
-        //    {
-        //        if (word.Length > 2 && !predlogs.Contains(word)) //длина слова > 2 и это не стоп-слово
-        //        {
-        //            //Тут пишем то, что нужно сделать со словом, 
-        //            //например подсчитать количество слов
-        //            wordCount++;
-
-        //            string[] slova = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';', }, StringSplitOptions.RemoveEmptyEntries); //разбить текст на слова
-        //            int kol = slova.Length;
-        //            int sim = richTextBox1.Text.Length;
-        //            richTextBox2.Text = " Количество слов в тексте: " + kol.ToString() + "\n\n " + "Двадцать наиболее повторяющихся слов в тексте:\n";
-        //            int pov = slova.Length;
-
-        //            string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", Environment.NewLine };
-        //            List<string> list = new List<string>();
-        //            list = richTextBox1.Text.Split(splits, StringSplitOptions.RemoveEmptyEntries).ToList();
-        //            List<Word> mywords = new List<Word>();
-        //            var duplicate_words = list.GroupBy(x => x.ToLower()).Where(x => x.Count() > 1).Select(x => x.Key.ToLower());
-        //            //Sanitize(duplicate_words.text);
-
-        //            //string resultat = Sanitize(duplicate_words.ToString());
-        //            //richTextBox2.AppendText(resultat);
-
-        //            foreach (string value in duplicate_words.ToList())
-        //            {
-        //                Regex reg = new Regex(value + " ", RegexOptions.IgnoreCase);
-        //                int n = 0;
-        //                foreach (Match match in reg.Matches(richTextBox1.Text))
-        //                {
-        //                    richTextBox1.Select(match.Index, match.Length);
-        //                    n++;
-        //                }
-        //                mywords.Add(new Word(value, n));
-
-        //            }
-
-        //            mywords.Sort(comparase);
-        //            if (mywords.Count >= 20) mywords.RemoveRange(20, mywords.Count - 20);
-
-        //            //words.Sanitize();
-
-        //            foreach (Word item in mywords)
-        //                richTextBox2.AppendText("\n" + item.word + " - " + item.count.ToString());
-
-        //            //предыдущий результат без стоп-слов (но с их количеством...)
-        //            string resultat = Sanitize(richTextBox2.Text);
-        //            richTextBox2.AppendText(resultat);
-        //        }
-        //    }
-        //}
-
-
         List<String> predlog = new List<String>(new string[]
           {
                         //предлоги
                         "в", "на", "из", "к", "у", "по", "из-за", "по-над", "под", "около", "вокруг", "перед", "возле", "до", "в", "через", "по", "с", "к", "перед", "в течение", "накануне", "в ходе",
-                        "от", "со зла", "за", "из-за", "в силу", "по случаю", "благодаря", "ввиду", "вследствие", "по причине",
-                        "в", "по", "к", "за", "для", "ради", "с", "без", "в", "от", "о", "об", "про", "с", "по", " насчет", "относительно",
+                        "от", "со зла", "за", "из-за", "в силу", "по случаю", "благодаря", "ввиду", "вследствие", "по причине", "по", "к", "за", "для", "ради", "с", "без", "в", "от", "о", "об", "про", "с", "по", " насчет", "относительно",
                         //союзы
                         "а", "абы", "аж", "ан", "благо", "буде", "будто", "вроде", "да", "дабы", "даже", "едва", "ежели", "если", "же", "затем", "зато", "и", "ибо", "или", "итак", "кабы", "как", "когда", "коли", "коль", "ли", "либо", "лишь", "нежели", "но", "пока", "покамест", "покуда", "поскольку", "притом", "причем", "пускай", "пусть", "раз", "разве", "ровно", "сиречь", "словно", "так", "также", "то", "тоже", "только", "точно", "хоть", "хотя", "чем", "чисто", "что", "чтоб", "чтобы", "чуть", "якобы", "е",
                         //частицы
@@ -329,57 +237,14 @@ namespace File_Information
                         "я", "мы", "ты", "вы", "он", "она", "оно", "они", "себя", "мой", "моя", "мое", "мои", "наш", "наша", "наше", "наши", "твой", "твоя", "твое", "твои", "ваш", "ваша", "ваше", "ваши", "его", "ее", "их", "	кто", "что", "какой", "каков", "чей", "который", "сколько", "где", "когда", "куда", "зачем", "столько", "этот", "тот", "такой", "таков", "тут", "здесь", "сюда", "туда", "оттуда", "отсюда", "тогда", "поэтому", "затем", "весь", "всякий", "все", "сам", "самый", "каждый", "любой", "другой", "иной", "всяческий", "всюду", "везде", "всегда", "никто", "ничто", "некого", "нечего", "никакой", "ничей", "некто", "нечто", "некий", "некоторый", "несколько", "кое-кто", "кое-где", "кое-что", "кое-куда", "какой-либо", "сколько-нибудь", "куда-нибудь", "зачем-нибудь", "чей-либо"
           });
 
-
-        //private void button3_Click(object sender, EventArgs e)
-        //{
-        //    string[] slova = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';', }, StringSplitOptions.RemoveEmptyEntries); //разбить текст на слова
-        //    int cntWord = slova.Length;
-        //    int cntSymbol = richTextBox1.Text.Length;
-        //    float average = cntSymbol / cntWord;
-        //    richTextBox2.Text = " Количество слов в тексте: " + cntWord.ToString() + "\n\n " + " Количество символов в тексте: " + cntSymbol.ToString() + "\n\n " + " Средняя длина слова, символов: " + average.ToString() + "\n\n " + "Двадцать наиболее повторяющихся слов в тексте:\n";
-        //    int pov = slova.Length;
-
-        //    string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", Environment.NewLine };
-        //    List<string> list = new List<string>();
-        //    list = richTextBox1.Text.Split(splits, StringSplitOptions.RemoveEmptyEntries).ToList();
-        //    List<Word> words = new List<Word>();
-        //    var duplicate_words = list.GroupBy(x => x.ToLower()).Where(x => x.Count() > 1).Select(x => x.Key.ToLower());
-
-        //    foreach (string value in duplicate_words.ToList())
-        //    {
-        //        Regex reg = new Regex(value + " ", RegexOptions.IgnoreCase);
-        //        int n = 0;
-        //        foreach (Match match in reg.Matches(richTextBox1.Text))
-        //        {
-        //            richTextBox1.Select(match.Index, match.Length);
-        //            //richTextBox1.SelectionColor = Color.Red;
-        //            //richTextBox1.DeselectAll();
-        //            n++;
-        //        }
-
-        //        //richTextBox1.SelectionStart = richTextBox1.TextLength;
-        //        //richTextBox1.SelectionColor = Color.Black; 
-
-        //        words.Add(new Word(value, n));
-        //    }
-
-        //    words.Sort(comparase);
-        //    if (words.Count >= 20) words.RemoveRange(20, words.Count - 20);
-
-        //    foreach (Word item in words)
-        //        richTextBox2.AppendText("\n" + item.word + " - " + item.count.ToString());
-
-        //}
-
-
-
    static class StopwordTool
     {
        static Dictionary<string, bool> _stops = new Dictionary<string, bool>
       {
+        //в словаре не должно быть повторов!!!
         { "в", true }, { "на", true }, { "из", true }, { "к", true }, { "у", true }, { "по", true },
         { "из-за", true }, { "под", true }, { "около", true }, { "вокруг", true }, { "до", true },
-        { "через", true }, { "по", true }, { "с", true }, { "к", true }, { "перед", true }
+        { "через", true }, { "с", true }
     };
 
         /// <summary>
@@ -428,12 +293,51 @@ namespace File_Information
         {
             //Console.WriteLine(StopwordTool.RemoveStopwords(
             //"I saw a cat and a horse"));
-            richTextBox2.AppendText(StopwordTool.RemoveStopwords(
-             richTextBox1.Text));
+
+            int cntWord = 0;
+            int cntSymbol = 0;
+            float average = 0;
+
+            ////удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+            //richTextBox3.AppendText(StopwordTool.RemoveStopwords(
+            // richTextBox1.Text));
+
+            string[] slova = richTextBox3.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';', }, StringSplitOptions.RemoveEmptyEntries); //разбить текст на слова
+            cntWord = slova.Length;
+            cntSymbol = richTextBox3.Text.Length;
+            average = cntSymbol / cntWord;
+            richTextBox2.Text = " Количество слов в тексте: " + cntWord.ToString() + "\n\n " + " Количество символов в тексте: " + cntSymbol.ToString() + "\n\n " + " Среднее количество символов в слове: " + average.ToString() + "\n\n " + "Двадцать наиболее повторяющихся слов в тексте:\n";
+            int pov = slova.Length;
+
+            string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", Environment.NewLine };
+            List<string> list = new List<string>();
+            list = richTextBox3.Text.Split(splits, StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<Word> words = new List<Word>();
+            var duplicate_words = list.GroupBy(x => x.ToLower()).Where(x => x.Count() > 1).Select(x => x.Key.ToLower());
+
+            foreach (string value in duplicate_words.ToList())
+            {
+                Regex reg = new Regex(value + " ", RegexOptions.IgnoreCase);
+                int n = 0;
+                foreach (Match match in reg.Matches(richTextBox3.Text))
+                {
+                    richTextBox3.Select(match.Index, match.Length);
+                    n++;
+                }
+                words.Add(new Word(value, n));
+            }
+
+            words.Sort(comparase);
+            if (words.Count >= 20) words.RemoveRange(20, words.Count - 20);
+
+            foreach (Word item in words)
+                richTextBox2.AppendText("\n" + item.word + " - " + item.count.ToString());
+
+
         }
 
 
 
 
-        }
+    }
 }
