@@ -43,16 +43,25 @@ namespace File_Information
             f.DefaultExt = "*.doc";
             f.Filter = "DOC Files|*.doc";
 
-            // Determine whether the user selected a file from the OpenFileDialog.
-            if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
-               f.FileName.Length > 0)
+            try
             {
-                // Load the contents of the file into the RichTextBox.
-                richTextBox1.LoadFile(f.FileName);
-                GetFileInformation(f.FileName);
-                //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
-                richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
+                // Determine whether the user selected a file from the OpenFileDialog.
+                if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
+                   f.FileName.Length > 0)
+                {
+                    // Load the contents of the file into the RichTextBox.
+                    richTextBox1.LoadFile(f.FileName);
+                    GetFileInformation(f.FileName);
+                    richTextBox3.Clear();
+                    //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+                    richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
+                }
             }
+            catch (TypeInitializationException ex)
+            {
+                MessageBox.Show(ex.Message, "В словаре стоп-слов есть повтор!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
 
@@ -61,27 +70,43 @@ namespace File_Information
             OpenFileDialog f = new OpenFileDialog();
             f.DefaultExt = "*.rtf";
             f.Filter = "RTF Files|*.rtf";
-            if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
+            try
             {
-                richTextBox1.LoadFile(f.FileName);
-                GetFileInformation(f.FileName);
-                //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
-                richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
+                if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
+                {
+                    richTextBox1.LoadFile(f.FileName);
+                    GetFileInformation(f.FileName);
+                    richTextBox3.Clear();
+                    //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+                    richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
+                }
+            }
+            catch (TypeInitializationException ex)
+            {
+                MessageBox.Show(ex.Message, "В словаре стоп-слов есть повтор!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        //      TEST!!!
+        //      TEST!!! откроется ли этот формат
         public void LoadMyDocx()
         {
             OpenFileDialog f = new OpenFileDialog();
             f.DefaultExt = "*.docx";
             f.Filter = "DOCX Files|*.docx";
-            if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
+            try
             {
-                richTextBox1.LoadFile(f.FileName);
-                GetFileInformation(f.FileName);
-                //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
-                richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
+                if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
+                {
+                    richTextBox1.LoadFile(f.FileName);
+                    GetFileInformation(f.FileName);
+                    richTextBox3.Clear();
+                    //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+                    richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
+                }
+            }
+            catch (TypeInitializationException ex)
+            {
+                MessageBox.Show(ex.Message, "В словаре стоп-слов есть повтор!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -159,24 +184,85 @@ namespace File_Information
             }
         }
 
-        //private void button3_Click(object sender, EventArgs e)
-        //{
-        //    //// v1 находит точное соответствие, не учитывает окончания
-        //    richTextBox1.SelectedText.ToLower();
-        //    string[] textArray = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';' }, StringSplitOptions.RemoveEmptyEntries);
-        //    var result = textArray.GroupBy(x => x)
-        //                      .Where(x => x.Count() > 1)
-        //                      .Select(x => new { Word = x.Key, Frequency = x.Count() });
+        // Удалить стоп-слова
+        static class StopwordTool
+        {
+           //Словарь стоп-слов
+           static Dictionary<string, bool> _stops = new Dictionary<string, bool>
+          {
+               //в словаре не должно быть повторов!!!
+               { "1", true }, { "2", true }, { "3", true }, { "4", true }, { "5", true }, { "6", true }, { "7", true }, { "8", true }, { "9", true }, { "0", true },
+               { "в", true }, { "на", true }, { "из", true }, { "к", true }, { "у", true }, { "по", true }, { "из-за", true }, { "по-над", true }, { "под", true }, { "около", true },
+               { "вокруг", true }, { "перед", true }, { "возле", true }, { "до", true }, { "через", true }, { "с", true },
+               { "в течение", true }, { "накануне", true }, { "в ходе", true }, { "от", true }, { "со зла", true }, { "за", true }, { "в силу", true }, { "по случаю", true }, { "благодаря", true }, { "ввиду", true },
+               { "вследствие", true }, { "по причине", true }, { "для", true }, { "ради", true }, { "без", true }, { "о", true }, { "об", true }, { "про", true },
+               { "насчет", true }, { "относительно", true }, { "во", true }, { "однако", true }, { "тип", true }, { "давайте", true },
+               {"а", true }, { "абы", true }, { "аж", true }, { "ан", true }, { "благо", true }, { "буде", true }, { "будто", true }, { "вроде", true }, { "да", true },
+               { "дабы", true }, { "даже", true }, { "едва", true }, { "ежели", true }, { "если", true }, { "же", true }, { "затем", true }, { "зато", true }, { "и", true },
+               { "ибо", true }, { "или", true }, { "итак", true }, { "кабы", true }, { "как", true }, { "когда", true }, { "коли", true }, { "коль", true }, { "ли", true },
+               { "либо", true }, { "лишь", true }, { "нежели", true }, { "но", true }, { "пока", true }, { "покамест", true }, { "покуда", true }, { "поскольку", true },
+               { "притом", true }, { "причем", true }, { "пускай", true }, { "пусть", true }, { "раз", true }, { "разве", true }, { "ровно", true }, { "сиречь", true },
+               { "словно", true }, { "так", true }, { "также", true }, { "то", true }, { "тоже", true }, { "только", true }, { "точно", true }, { "хоть", true },
+               { "хотя", true }, { "чем", true }, { "чисто", true }, { "что", true }, { "чтоб", true }, { "чтобы", true }, { "чуть", true }, { "якобы", true },
+               { "неужели", true }, { "что за", true }, { "ну и", true }, { "ишь", true }, { "еще бы", true }, { "ну", true }, { "ещё", true },
+               { "ведь", true }, { "ни", true }, { "уж", true }, { "уже", true }, { " то", true }, { "всё-таки", true }, { "все же", true },
+               { "не", true }, { "нет", true }, { "вовсе не", true }, { "отнюдь не", true }, { "ага", true }, { "угу", true }, { "вот", true }, { "вон", true }, { "вот и", true }, { "всего лишь", true },
+               { "единственно", true }, { "почти", true }, { "исключительно", true }, { "именно", true }, { "прямо", true }, { "всего", true }, { " в точности", true }, { "едва ли", true }, { "вряд ли", true },
+               { "навряд ли", true }, { "авось", true }, { "я", true }, { "мы", true }, { "ты", true }, { "вы", true }, { "он", true }, { "она", true }, { "оно", true }, { "они", true },
+               { "себя", true }, { "мой", true }, { "моя", true }, { "мое", true }, { "мои", true }, { "наш", true }, { "наша", true }, { "наше", true },
+               { "наши", true }, { "твой", true }, { "твоя", true }, { "твое", true }, { "твои", true }, { "ваш", true }, { "ваша", true }, { "ваше", true },
+               { "ваши", true }, { "его", true }, { "ему", true }, { "ее", true }, { "их", true }, { "	кто", true }, { "какой", true }, { "каков", true },
+               { "чей", true }, { "который", true }, { "сколько", true }, { "где", true }, { "куда", true }, { "зачем", true },
+               { "столько", true }, { "этот", true }, { "тот", true }, { "такой", true }, { "таков", true }, { "тут", true }, { "здесь", true },
+               { "сюда", true }, { "туда", true }, { "оттуда", true }, { "отсюда", true }, { "тогда", true }, { "поэтому", true },
+               { "весь", true }, { "всякий", true }, { "все", true }, { "сам", true }, { "самый", true }, { "каждый", true }, { "любой", true },
+               { "другой", true }, { "иной", true }, { "всяческий", true }, { "всюду", true }, { "везде", true }, { "всегда", true }, { "никто", true },
+               { "ничто", true }, { "некого", true }, { "нечего", true }, { "никакой", true }, { "ничей", true }, { "некто", true }, { "нечто", true },
+               { "некий", true }, { "некоторый", true }, { "несколько", true }, { "кое-кто", true }, { "кое-где", true }, { "кое-что", true },
+               { "кое-куда", true }, { "какой-либо", true }, { "сколько-нибудь", true }, { "куда-нибудь", true }, { "зачем-нибудь", true },
+               { "чей-либо", true }, { "это", true }, { "т", true }, { "public", true }, { "можно", true }, { "i", true }, { "иногда", true }, { "желательно", true }, { "p", true },
+               { "при", true }, { "почему", true }, { "еще", true }, { "теперь", true }
+            };
 
-        //    foreach (var item in result)
-        //    {
-        //        richTextBox2.Text = ("Слово: " + item.Word + "\nКоличество повторов: " + item.Frequency);
-        //    }
-        //}
+                /// <summary>
+                /// Chars that separate words.
+                /// </summary>
+                static char[] _delimiters = new char[]
+                {
+                    '.', ' ', ',', ':', ';',
+                    '"', '-', '=', '·', '%', '<', '>', '!', '@', '#', '$', '%', '^', '&', '+', ')', '(', '{', '}', '«', '»', '?','/', '|', '\'',
+                };
 
+                /// <summary>
+                /// Remove stopwords from string.
+                /// </summary>
+                public static string RemoveStopwords(string input)
+                {
+                    // 1 Split parameter into words
+                    var words = input.Split(_delimiters,
+                        StringSplitOptions.RemoveEmptyEntries);
+                    // 2 Allocate new dictionary to store found words
+                    var found = new Dictionary<string, bool>();
+                    // 3 Store results in this StringBuilder
+                    StringBuilder builder = new StringBuilder();
+                    // 4 Loop through all words
+                    foreach (string currentWord in words)
+                    {
+                        // 5 Convert to lowercase
+                        string lowerWord = currentWord.ToLower();
+                        // 6 If this is a usable word, add it
+                        if (!_stops.ContainsKey(lowerWord) &&
+                            !found.ContainsKey(lowerWord))
+                        {
+                            builder.Append(currentWord).Append(' ');
+                            found.Add(lowerWord, true);
+                        }
+                    }
+                    // 7 Return string with words removed
+                    return builder.ToString().Trim();
+                }
+        } /*end static class StopwordTool*/
 
-        // v2 кол-во слов и 20 наиболее повторяющихся слов в тексте
-        //todo: убрать стоп-слова
         class Word
         {
             public int count;
@@ -195,112 +281,11 @@ namespace File_Information
             else return 1;
         }
 
-
-        //удалить стоп-слова
-        public static string Sanitize(string s)
-        {
-            var stops = new string[]
-            {
-                //предлоги
-                "в", "на", "из", "к", "у", "по", "из-за", "по-над", "под", "около", "вокруг", "перед", "возле", "до", "в", "через", "по", "с", "к", "перед", "в течение", "накануне", "в ходе",
-                "от", "со зла", "за", "из-за", "в силу", "по случаю", "благодаря", "ввиду", "вследствие", "по причине",
-                "в", "по", "к", "за", "для", "ради", "с", "без", "в", "от", "о", "об", "про", "с", "по", " насчет", "относительно",
-                //союзы
-                "а", "абы", "аж", "ан", "благо", "буде", "будто", "вроде", "да", "дабы", "даже", "едва", "ежели", "если", "же", "затем", "зато", "и", "ибо", "или", "итак", "кабы", "как", "когда", "коли", "коль", "ли", "либо", "лишь", "нежели", "но", "пока", "покамест", "покуда", "поскольку", "притом", "причем", "пускай", "пусть", "раз", "разве", "ровно", "сиречь", "словно", "так", "также", "то", "тоже", "только", "точно", "хоть", "хотя", "чем", "чисто", "что", "чтоб", "чтобы", "чуть", "якобы", "е",
-                //частицы
-                "ли", "разве", "неужели", "а", "что за", "ну и", "как", "ишь", "как бы", "еще бы", "даже", "же", "ну", "и", "ещё", "ведь", "ни", "уж", "уже", " то", "всё-таки", "все же", "только", "аж", "не", "ни", "нет", "вовсе не", "отнюдь не", "да", "так", "точно (в значении да)", "ага", "угу", "вот", "вон", "вот и", "лишь", "только", " всего лишь", " единственно", "хоть", "почти", "исключительно", "чуть", "как раз", "именно", "точно", "ровно", "прямо", "всего", " в точности", "едва ли", "вряд ли", "навряд ли", "авось",
-                //местоимения
-                "я", "мы", "ты", "вы", "он", "она", "оно", "они", "себя", "мой", "моя", "мое", "мои", "наш", "наша", "наше", "наши", "твой", "твоя", "твое", "твои", "ваш", "ваша", "ваше", "ваши", "его", "ее", "их", "	кто", "что", "какой", "каков", "чей", "который", "сколько", "где", "когда", "куда", "зачем", "столько", "этот", "тот", "такой", "таков", "тут", "здесь", "сюда", "туда", "оттуда", "отсюда", "тогда", "поэтому", "затем", "весь", "всякий", "все", "сам", "самый", "каждый", "любой", "другой", "иной", "всяческий", "всюду", "везде", "всегда", "никто", "ничто", "некого", "нечего", "никакой", "ничей", "некто", "нечто", "некий", "некоторый", "несколько", "кое-кто", "кое-где", "кое-что", "кое-куда", "какой-либо", "сколько-нибудь", "куда-нибудь", "зачем-нибудь", "чей-либо"
-            };
-
-            stops = stops.OrderByDescending(st => st.Length).ToArray();
-
-            foreach (string stop in stops)
-            {
-                Regex r = new Regex(@"(\s|^)" + Regex.Escape(stop) + @"(\s|$)");
-                s = r.Replace(s, " ");
-            }
-
-            return s;
-        }
-
-        List<String> predlog = new List<String>(new string[]
-          {
-                        //предлоги
-                        "в", "на", "из", "к", "у", "по", "из-за", "по-над", "под", "около", "вокруг", "перед", "возле", "до", "в", "через", "по", "с", "к", "перед", "в течение", "накануне", "в ходе",
-                        "от", "со зла", "за", "из-за", "в силу", "по случаю", "благодаря", "ввиду", "вследствие", "по причине", "по", "к", "за", "для", "ради", "с", "без", "в", "от", "о", "об", "про", "с", "по", " насчет", "относительно",
-                        //союзы
-                        "а", "абы", "аж", "ан", "благо", "буде", "будто", "вроде", "да", "дабы", "даже", "едва", "ежели", "если", "же", "затем", "зато", "и", "ибо", "или", "итак", "кабы", "как", "когда", "коли", "коль", "ли", "либо", "лишь", "нежели", "но", "пока", "покамест", "покуда", "поскольку", "притом", "причем", "пускай", "пусть", "раз", "разве", "ровно", "сиречь", "словно", "так", "также", "то", "тоже", "только", "точно", "хоть", "хотя", "чем", "чисто", "что", "чтоб", "чтобы", "чуть", "якобы", "е",
-                        //частицы
-                        "ли", "разве", "неужели", "а", "что за", "ну и", "как", "ишь", "как бы", "еще бы", "даже", "же", "ну", "и", "ещё", "ведь", "ни", "уж", "уже", " то", "всё-таки", "все же", "только", "аж", "не", "ни", "нет", "вовсе не", "отнюдь не", "да", "так", "точно (в значении да)", "ага", "угу", "вот", "вон", "вот и", "лишь", "только", " всего лишь", " единственно", "хоть", "почти", "исключительно", "чуть", "как раз", "именно", "точно", "ровно", "прямо", "всего", " в точности", "едва ли", "вряд ли", "навряд ли", "авось",
-                        //местоимения
-                        "я", "мы", "ты", "вы", "он", "она", "оно", "они", "себя", "мой", "моя", "мое", "мои", "наш", "наша", "наше", "наши", "твой", "твоя", "твое", "твои", "ваш", "ваша", "ваше", "ваши", "его", "ее", "их", "	кто", "что", "какой", "каков", "чей", "который", "сколько", "где", "когда", "куда", "зачем", "столько", "этот", "тот", "такой", "таков", "тут", "здесь", "сюда", "туда", "оттуда", "отсюда", "тогда", "поэтому", "затем", "весь", "всякий", "все", "сам", "самый", "каждый", "любой", "другой", "иной", "всяческий", "всюду", "везде", "всегда", "никто", "ничто", "некого", "нечего", "никакой", "ничей", "некто", "нечто", "некий", "некоторый", "несколько", "кое-кто", "кое-где", "кое-что", "кое-куда", "какой-либо", "сколько-нибудь", "куда-нибудь", "зачем-нибудь", "чей-либо"
-          });
-
-   static class StopwordTool
-    {
-       static Dictionary<string, bool> _stops = new Dictionary<string, bool>
-      {
-        //в словаре не должно быть повторов!!!
-        { "в", true }, { "на", true }, { "из", true }, { "к", true }, { "у", true }, { "по", true },
-        { "из-за", true }, { "под", true }, { "около", true }, { "вокруг", true }, { "до", true },
-        { "через", true }, { "с", true }
-    };
-
-        /// <summary>
-        /// Chars that separate words.
-        /// </summary>
-        static char[] _delimiters = new char[]
-        {
-        ' ',
-        ',',
-        ';',
-        '.'
-        };
-
-        /// <summary>
-        /// Remove stopwords from string.
-        /// </summary>
-        public static string RemoveStopwords(string input)
-        {
-            // 1 Split parameter into words
-            var words = input.Split(_delimiters,
-                StringSplitOptions.RemoveEmptyEntries);
-            // 2 Allocate new dictionary to store found words
-            var found = new Dictionary<string, bool>();
-            // 3 Store results in this StringBuilder
-            StringBuilder builder = new StringBuilder();
-            // 4 Loop through all words
-            foreach (string currentWord in words)
-            {
-                // 5 Convert to lowercase
-                string lowerWord = currentWord.ToLower();
-                // 6 If this is a usable word, add it
-                if (!_stops.ContainsKey(lowerWord) &&
-                    !found.ContainsKey(lowerWord))
-                {
-                    builder.Append(currentWord).Append(' ');
-                    found.Add(lowerWord, true);
-                }
-            }
-            // 7 Return string with words removed
-            return builder.ToString().Trim();
-        }
-    }
-
-
         private void button3_Click(object sender, EventArgs e)
         {
-            //Console.WriteLine(StopwordTool.RemoveStopwords(
-            //"I saw a cat and a horse"));
-
             int cntWord = 0;
             int cntSymbol = 0;
             float average = 0;
-
-            ////удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
-            //richTextBox3.AppendText(StopwordTool.RemoveStopwords(
-            // richTextBox1.Text));
 
             string[] slova = richTextBox3.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';', }, StringSplitOptions.RemoveEmptyEntries); //разбить текст на слова
             cntWord = slova.Length;
@@ -309,7 +294,7 @@ namespace File_Information
             richTextBox2.Text = " Количество слов в тексте: " + cntWord.ToString() + "\n\n " + " Количество символов в тексте: " + cntSymbol.ToString() + "\n\n " + " Среднее количество символов в слове: " + average.ToString() + "\n\n " + "Двадцать наиболее повторяющихся слов в тексте:\n";
             int pov = slova.Length;
 
-            string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", Environment.NewLine };
+            string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", "\t", "\v", "\f", "|", Environment.NewLine };
             List<string> list = new List<string>();
             list = richTextBox3.Text.Split(splits, StringSplitOptions.RemoveEmptyEntries).ToList();
             List<Word> words = new List<Word>();
@@ -328,12 +313,10 @@ namespace File_Information
             }
 
             words.Sort(comparase);
-            if (words.Count >= 20) words.RemoveRange(20, words.Count - 20);
+            if (words.Count >= 21) words.RemoveRange(21, words.Count - 21);
 
             foreach (Word item in words)
-                richTextBox2.AppendText("\n" + item.word + " - " + item.count.ToString());
-
-
+                richTextBox2.AppendText("\n" + " " + item.word + " - " + item.count.ToString());
         }
 
 

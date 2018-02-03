@@ -242,7 +242,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(509, 28);
+            this.button3.Location = new System.Drawing.Point(621, 28);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(143, 35);
             this.button3.TabIndex = 25;
@@ -252,9 +252,9 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(509, 69);
+            this.richTextBox2.Location = new System.Drawing.Point(621, 69);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(508, 231);
+            this.richTextBox2.Size = new System.Drawing.Size(396, 231);
             this.richTextBox2.TabIndex = 26;
             this.richTextBox2.Text = "";
             // 
