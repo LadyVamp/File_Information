@@ -332,12 +332,6 @@ namespace File_Information
 
         private void button3_Click(object sender, EventArgs e)
         {
-
-            //var words = new string[] { "на", "или", "впереди" };
-            //string text = "Петя на мопеде ехал впереди, или нет";
-            //text = Regex.Replace(text, "\\b" + string.Join("\\b|\\b", words) + "\\b", "");
-
-
             string[] slova = richTextBox1.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';', }, StringSplitOptions.RemoveEmptyEntries); //разбить текст на слова
             int cntWord = slova.Length;
             int cntSymbol = richTextBox1.Text.Length;
@@ -374,10 +368,6 @@ namespace File_Information
 
             foreach (Word item in words)
                 richTextBox2.AppendText("\n" + item.word + " - " + item.count.ToString());
-
-
-
-
         }
 
 
