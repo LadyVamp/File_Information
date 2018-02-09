@@ -100,21 +100,6 @@ namespace File_Information
             {
                 if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
                 {
-                    //richTextBox1.LoadFile(f.FileName);
-                    //GetFileInformation(f.FileName);
-                    //richTextBox3.Clear();
-                    ////удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
-                    //richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
-
-                    ////загрузка текста из файла, расположенного в debug
-                    //var path = @"test.html";
-                    //HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                    //doc.Load(path);
-                    //var node = doc.DocumentNode.SelectSingleNode("//body");
-                    //richTextBox1.AppendText(node.OuterHtml);
-
-                    //загрузка body из файла
-                    //var path = @"test.html";
                     HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
                     htmlDoc.Load(f.FileName);
                     GetFileInformation(f.FileName);
@@ -122,13 +107,13 @@ namespace File_Information
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
 
-                    //body в rtb1
-                    var node = htmlDoc.DocumentNode.SelectSingleNode("//body");
-                    richTextBox1.AppendText(node.OuterHtml);
+                    ////body в rtb1
+                    //var node = htmlDoc.DocumentNode.SelectSingleNode("//body");
+                    //richTextBox1.AppendText(node.OuterHtml);
 
-                    //title вместе с тегом
+                    //title 
                     var title = htmlDoc.DocumentNode.SelectSingleNode("//title");
-                    label1.Text = title.OuterHtml;
+                    label1.Text = title.InnerText;
 
                     //keywords
                     HtmlNode mdnode = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='keywords']");
@@ -139,24 +124,6 @@ namespace File_Information
                         string keywords = key.Value;
                         label8.Text = keywords;
                     }
-
-                    ////var title = htmlDoc.DocumentNode.SelectSingleNode("//a[@title]");
-                    ////var title = htmlDoc.DocumentNode.SelectNodes("title").FirstOrDefault();
-                    ////var title = htmlDoc.DocumentNode.SelectSingleNode("//head/title");
-                    ////string cptitle = HttpUtility.HtmlDecode(node.SelectSingleNode("//span[@itemprop='title']").InnerText);
-                    ////var title = htmlDoc.DocumentNode.SelectSingleNode(("//head/title").InnerText);
-
-                    //////var title = htmlDoc.DocumentNode.Descendants("title").SingleOrDefault();
-                    ////var title = htmlDoc.DocumentNode.Descendants("title");
-                    ////label1.Text = title.OuterHtml;
-
-                    ////var title = 
-                    ////label1.Text = title.OuterHtml;
-                    //string text = htmlDoc.DocumentNode.SelectSingleNode("//title").ToString();
-                    //string match = Regex.Match(text, "(?<=< title >)(.*)(?=</ title >)").ToString();
-                    //label1.Text = match;
-                
-
 
                 }
             }
