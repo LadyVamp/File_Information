@@ -6,3 +6,6 @@ c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Infor
 c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\obj\Debug\File_Information.csproj.GenerateResource.Cache
 c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\obj\Debug\File_Information.exe
 c:\users\front\documents\visual studio 2015\Projects\File_Information\File_Information\obj\Debug\File_Information.pdb
+C:\Users\front\documents\visual studio 2015\Projects\File_Information\File_Information\bin\Debug\HtmlAgilityPack.dll
+C:\Users\front\documents\visual studio 2015\Projects\File_Information\File_Information\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\front\documents\visual studio 2015\Projects\File_Information\File_Information\bin\Debug\HtmlAgilityPack.xml

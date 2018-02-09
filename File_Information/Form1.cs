@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using HtmlAgilityPack;
 
 namespace File_Information
 {
@@ -32,6 +33,8 @@ namespace File_Information
                 LoadMyDocx();
             else if ((rbRtf.Checked == true) && (rbDoc.Checked == false) && (rbDocx.Checked == false))
                 LoadMyRtf();
+            else if ((rbHtml.Checked == true) && (rbRtf.Checked == false) && (rbDoc.Checked == false) && (rbDocx.Checked == false))
+                LoadMyHtml();
         }
 
         public void LoadMyDoc()
@@ -79,6 +82,48 @@ namespace File_Information
                     richTextBox3.Clear();
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
+                }
+            }
+            catch (TypeInitializationException ex)
+            {
+                MessageBox.Show(ex.Message, "В словаре стоп-слов есть повтор!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void LoadMyHtml()
+        {
+            OpenFileDialog f = new OpenFileDialog();
+            f.DefaultExt = "*.html";
+            f.Filter = "HTML Files|*.html";
+            try
+            {
+                if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
+                {
+                    //richTextBox1.LoadFile(f.FileName);
+                    //GetFileInformation(f.FileName);
+                    //richTextBox3.Clear();
+                    ////удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+                    //richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
+
+                    //var path = @"test.html";
+                    //var doc = new HtmlDocument();
+                    //doc.Load(path);
+                    //var node = doc.DocumentNode.SelectSingleNode("//body");
+                    //Console.WriteLine(node.OuterHtml);
+
+                    //загрузка текста из файла, расположенного в debug
+                    var path = @"test.html";
+
+                    //var doc = new HtmlDocument();
+                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    doc.Load(path);
+
+                    var node = doc.DocumentNode.SelectSingleNode("//body");
+
+                    //Console.WriteLine(node.OuterHtml);
+                    richTextBox1.AppendText(node.OuterHtml);
+
+
                 }
             }
             catch (TypeInitializationException ex)
@@ -319,8 +364,6 @@ namespace File_Information
                 richTextBox2.AppendText("\n" + " " + item.word + " - " + item.count.ToString());
         }
 
-
-
-
+       
     }
 }

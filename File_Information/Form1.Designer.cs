@@ -51,6 +51,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.rbHtml = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // label1
@@ -100,7 +101,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(202, 28);
+            this.button1.Location = new System.Drawing.Point(233, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 35);
             this.button1.TabIndex = 8;
@@ -119,7 +120,7 @@
             // rbDoc
             // 
             this.rbDoc.AutoSize = true;
-            this.rbDoc.Location = new System.Drawing.Point(63, 32);
+            this.rbDoc.Location = new System.Drawing.Point(63, 12);
             this.rbDoc.Name = "rbDoc";
             this.rbDoc.Size = new System.Drawing.Size(52, 21);
             this.rbDoc.TabIndex = 10;
@@ -130,7 +131,7 @@
             // rbRtf
             // 
             this.rbRtf.AutoSize = true;
-            this.rbRtf.Location = new System.Drawing.Point(63, 59);
+            this.rbRtf.Location = new System.Drawing.Point(63, 39);
             this.rbRtf.Name = "rbRtf";
             this.rbRtf.Size = new System.Drawing.Size(42, 21);
             this.rbRtf.TabIndex = 11;
@@ -140,7 +141,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(351, 28);
+            this.button2.Location = new System.Drawing.Point(475, 265);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(131, 35);
             this.button2.TabIndex = 12;
@@ -232,7 +233,7 @@
             // rbDocx
             // 
             this.rbDocx.AutoSize = true;
-            this.rbDocx.Location = new System.Drawing.Point(121, 32);
+            this.rbDocx.Location = new System.Drawing.Point(63, 66);
             this.rbDocx.Name = "rbDocx";
             this.rbDocx.Size = new System.Drawing.Size(52, 21);
             this.rbDocx.TabIndex = 24;
@@ -266,11 +267,23 @@
             this.richTextBox3.TabIndex = 27;
             this.richTextBox3.Text = "";
             // 
+            // rbHtml
+            // 
+            this.rbHtml.AutoSize = true;
+            this.rbHtml.Location = new System.Drawing.Point(150, 12);
+            this.rbHtml.Name = "rbHtml";
+            this.rbHtml.Size = new System.Drawing.Size(55, 21);
+            this.rbHtml.TabIndex = 28;
+            this.rbHtml.TabStop = true;
+            this.rbHtml.Text = "html";
+            this.rbHtml.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 627);
+            this.Controls.Add(this.rbHtml);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.button3);
@@ -326,6 +339,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.RadioButton rbHtml;
     }
 }
 
