@@ -111,16 +111,20 @@ namespace File_Information
                     //var node = doc.DocumentNode.SelectSingleNode("//body");
                     //Console.WriteLine(node.OuterHtml);
 
-                    //загрузка текста из файла, расположенного в debug
-                    var path = @"test.html";
+                    ////загрузка текста из файла, расположенного в debug
+                    //var path = @"test.html";
+                    //HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    //doc.Load(path);
+                    //var node = doc.DocumentNode.SelectSingleNode("//body");
+                    //richTextBox1.AppendText(node.OuterHtml);
 
-                    //var doc = new HtmlDocument();
+                    //загрузка body из файла
+                    //var path = @"test.html";
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                    doc.Load(path);
-
+                    doc.Load(f.FileName);
+                    GetFileInformation(f.FileName);
+                    
                     var node = doc.DocumentNode.SelectSingleNode("//body");
-
-                    //Console.WriteLine(node.OuterHtml);
                     richTextBox1.AppendText(node.OuterHtml);
 
 
