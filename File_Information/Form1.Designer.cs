@@ -115,7 +115,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(64, 328);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(953, 124);
+            this.richTextBox1.Size = new System.Drawing.Size(953, 246);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
@@ -263,11 +263,12 @@
             // 
             // richTextBox3
             // 
-            this.richTextBox3.Location = new System.Drawing.Point(63, 458);
+            this.richTextBox3.Location = new System.Drawing.Point(63, 580);
             this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(954, 157);
+            this.richTextBox3.Size = new System.Drawing.Size(233, 35);
             this.richTextBox3.TabIndex = 27;
             this.richTextBox3.Text = "";
+            this.richTextBox3.Visible = false;
             // 
             // rbHtml
             // 

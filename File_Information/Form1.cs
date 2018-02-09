@@ -58,6 +58,7 @@ namespace File_Information
                     GetFileInformation(f.FileName);
                     richTextBox3.Clear();
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+                    //в rbt3 текст без стилей и почищенный от стоп-слов
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
                 }
             }
@@ -104,12 +105,12 @@ namespace File_Information
                     htmlDoc.Load(f.FileName);
                     GetFileInformation(f.FileName);
                     richTextBox3.Clear();
-                    //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
-                    richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
+                    ////удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
+                    //richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
 
-                    ////body в rtb1
-                    //var node = htmlDoc.DocumentNode.SelectSingleNode("//body");
-                    //richTextBox1.AppendText(node.OuterHtml);
+                    //body в rtb1
+                    var node = htmlDoc.DocumentNode.SelectSingleNode("//body");
+                    richTextBox1.AppendText(node.OuterHtml);
 
                     //title 
                     var title = htmlDoc.DocumentNode.SelectSingleNode("//title");
@@ -124,6 +125,11 @@ namespace File_Information
                         string keywords = key.Value;
                         label8.Text = keywords;
                     }
+
+                    //TODO: 
+                    // 1. загрузить в БД инфу о html с ключевыми словами
+                    // 2. msgbox: вы действительно хотите загрузить файл в бд???
+                    // 3. текст статьи с post__body_full. Анализировать, если нефиг делать
 
                 }
             }
@@ -158,6 +164,7 @@ namespace File_Information
 
 
 
+        //Заполнение лейблов
         public void GetFileInformation(string FileName)
         {
             FileInfo f = new FileInfo(FileName);
@@ -327,6 +334,7 @@ namespace File_Information
             else return 1;
         }
 
+        //Анализ текста. Текст берется из richTextBox3 (visible=false)
         private void button3_Click(object sender, EventArgs e)
         {
             int cntWord = 0;
