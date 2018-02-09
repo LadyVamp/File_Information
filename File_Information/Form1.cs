@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
+using System.Xml;
 
 namespace File_Information
 {
@@ -105,23 +106,33 @@ namespace File_Information
                     ////удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     //richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
 
+                    ////загрузка текста из файла, расположенного в debug
                     //var path = @"test.html";
-                    //var doc = new HtmlDocument();
+                    //HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     //doc.Load(path);
                     //var node = doc.DocumentNode.SelectSingleNode("//body");
-                    //Console.WriteLine(node.OuterHtml);
+                    //richTextBox1.AppendText(node.OuterHtml);
 
-                    //загрузка текста из файла, расположенного в debug
-                    var path = @"test.html";
-
-                    //var doc = new HtmlDocument();
-                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                    doc.Load(path);
-
-                    var node = doc.DocumentNode.SelectSingleNode("//body");
-
-                    //Console.WriteLine(node.OuterHtml);
+                    //загрузка body из файла
+                    //var path = @"test.html";
+                    HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+                    htmlDoc.Load(f.FileName);
+                    GetFileInformation(f.FileName);
+                    
+                    var node = htmlDoc.DocumentNode.SelectSingleNode("//body");
                     richTextBox1.AppendText(node.OuterHtml);
+
+                    var title = htmlDoc.DocumentNode.SelectSingleNode("//title");
+                    label1.Text = title.OuterHtml;
+
+                    HtmlNode mdnode = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='keywords']");
+                    if (mdnode != null)
+                    {
+                        HtmlAttribute key;
+                        key = mdnode.Attributes["content"];
+                        string keywords = key.Value;
+                        label8.Text = keywords;
+                    }
 
 
                 }
