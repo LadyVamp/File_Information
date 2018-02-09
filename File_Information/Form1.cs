@@ -113,6 +113,7 @@ namespace File_Information
                     //var node = doc.DocumentNode.SelectSingleNode("//body");
                     //richTextBox1.AppendText(node.OuterHtml);
 
+<<<<<<< HEAD
                     //загрузка body из файла
                     //var path = @"test.html";
                     HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
@@ -133,6 +134,23 @@ namespace File_Information
                         string keywords = key.Value;
                         label8.Text = keywords;
                     }
+=======
+                    ////загрузка текста из файла, расположенного в debug
+                    //var path = @"test.html";
+                    //HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    //doc.Load(path);
+                    //var node = doc.DocumentNode.SelectSingleNode("//body");
+                    //richTextBox1.AppendText(node.OuterHtml);
+
+                    //загрузка body из файла
+                    //var path = @"test.html";
+                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    doc.Load(f.FileName);
+                    GetFileInformation(f.FileName);
+                    
+                    var node = doc.DocumentNode.SelectSingleNode("//body");
+                    richTextBox1.AppendText(node.OuterHtml);
+>>>>>>> 88b6d5500f0d7d05b797a99b1f81b5c247bd7def
 
 
                 }
