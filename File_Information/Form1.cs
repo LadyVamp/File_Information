@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using System.Xml;
+using System.Net;
 
 namespace File_Information
 {
@@ -116,6 +117,16 @@ namespace File_Information
                     var title = htmlDoc.DocumentNode.SelectSingleNode("//title");
                     label1.Text = title.InnerText;
 
+                    ////keywords
+                    //HtmlNode mdnode = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='keywords']");
+                    //if (mdnode != null)
+                    //{
+                    //    HtmlAttribute key;
+                    //    key = mdnode.Attributes["content"];
+                    //    string keywords = key.Value;
+                    //    label8.Text = keywords;
+                    //}
+
                     //keywords
                     HtmlNode mdnode = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='keywords']");
                     if (mdnode != null)
@@ -126,15 +137,16 @@ namespace File_Information
                         label8.Text = keywords;
                     }
 
-                    //URL
-                    HtmlNode mdnode1 = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og: url']");
-                    if (mdnode1 != null)
-                    {
-                        HtmlAttribute url;
-                        url = mdnode1.Attributes["content"];
-                        string url1 = url.Value;
-                        label9.Text = url1;
-                    }
+                    //string url = "http://www.ozon.ru/context/detail/id/4493566/?from=prt_xml_facet";
+                    //WebClient wc = new WebClient();
+                    //string str = wc.DownloadString(url);
+                    //HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
+                    //htmlDocument.LoadHtml(str);
+                    //var div_inner_text = htmlDocument.DocumentNode.SelectSingleNode("//div[@class='bItemCompositionLink']").InnerText;
+                    //textBox1.Text = div_inner_text;
+
+
+
 
                     //TODO: 
                     // 1. загрузить в БД инфу о html с ключевыми словами
@@ -217,6 +229,7 @@ namespace File_Information
                 string dateChange = label4.Text; //  дата изменения
                 string path = label6.Text;  //путь к файлу для загрузки
                 string size = label7.Text; // размер
+                string keyword = label8.Text; // ключевые слова
                 string fileContent = richTextBox1.Text; // содержимое
 
                 // передаем данные в команду через параметры
@@ -225,7 +238,8 @@ namespace File_Information
                 command.Parameters["@DateCreate"].Value = dateCreate;
                 command.Parameters["@DateChange"].Value = dateChange;
                 command.Parameters["@Size"].Value = size;
-                command.Parameters["@Keywords"].Value = "test123";
+                //command.Parameters["@Keywords"].Value = "test123";
+                command.Parameters["@Keywords"].Value = keyword;
                 command.Parameters["@Filecontent"].Value = fileContent;
                 command.Parameters["@CatalogId"].Value = 1;
 
