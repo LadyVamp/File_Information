@@ -103,7 +103,7 @@ namespace File_Information
                 if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
                 {
                     HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
-                    htmlDoc.Load(f.FileName);
+                    htmlDoc.Load(f.FileName, true); //true чтобы русские символы были не иероглифами
                     GetFileInformation(f.FileName);
                     richTextBox3.Clear();
                     ////удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
@@ -117,16 +117,6 @@ namespace File_Information
                     var title = htmlDoc.DocumentNode.SelectSingleNode("//title");
                     label1.Text = title.InnerText;
 
-                    ////keywords
-                    //HtmlNode mdnode = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='keywords']");
-                    //if (mdnode != null)
-                    //{
-                    //    HtmlAttribute key;
-                    //    key = mdnode.Attributes["content"];
-                    //    string keywords = key.Value;
-                    //    label8.Text = keywords;
-                    //}
-
                     //keywords
                     HtmlNode mdnode = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='keywords']");
                     if (mdnode != null)
@@ -137,22 +127,6 @@ namespace File_Information
                         label8.Text = keywords;
                     }
 
-                    //string url = "http://www.ozon.ru/context/detail/id/4493566/?from=prt_xml_facet";
-                    //WebClient wc = new WebClient();
-                    //string str = wc.DownloadString(url);
-                    //HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
-                    //htmlDocument.LoadHtml(str);
-                    //var div_inner_text = htmlDocument.DocumentNode.SelectSingleNode("//div[@class='bItemCompositionLink']").InnerText;
-                    //textBox1.Text = div_inner_text;
-
-
-
-
-                    //TODO: 
-                    // 1. загрузить в БД инфу о html с ключевыми словами
-                    // 2. msgbox: вы действительно хотите загрузить файл в бд???
-                    // 3. текст статьи с post__body_full. Анализировать, если нефиг делать
-
                 }
             }
             catch (TypeInitializationException ex)
@@ -160,6 +134,8 @@ namespace File_Information
                 MessageBox.Show(ex.Message, "В словаре стоп-слов есть повтор!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+       
 
         //      TEST!!! откроется ли этот формат
         public void LoadMyDocx()
@@ -256,6 +232,11 @@ namespace File_Information
                     MessageBox.Show(ex.Message);
                     connection.Close();
                 }
+
+
+
+
+
 
 
             }
@@ -397,6 +378,6 @@ namespace File_Information
                 richTextBox2.AppendText("\n" + " " + item.word + " - " + item.count.ToString());
         }
 
-       
+
     }
 }
