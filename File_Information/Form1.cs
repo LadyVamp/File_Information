@@ -57,6 +57,7 @@ namespace File_Information
                     // Load the contents of the file into the RichTextBox.
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
+                    richTextBox2.Clear();
                     richTextBox3.Clear();
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     //в rbt3 текст без стилей и почищенный от стоп-слов
@@ -82,6 +83,7 @@ namespace File_Information
                 {
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
+                    richTextBox2.Clear();
                     richTextBox3.Clear();
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
@@ -105,6 +107,7 @@ namespace File_Information
                     HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
                     htmlDoc.Load(f.FileName, true); //true чтобы русские символы были не иероглифами
                     GetFileInformation(f.FileName);
+                    richTextBox2.Clear();
                     richTextBox3.Clear();
                     ////удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     //richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
@@ -159,6 +162,7 @@ namespace File_Information
                 {
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
+                    richTextBox2.Clear();
                     richTextBox3.Clear();
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
