@@ -118,13 +118,23 @@ namespace File_Information
                     label1.Text = title.InnerText;
 
                     //keywords
-                    HtmlNode mdnode = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='keywords']");
-                    if (mdnode != null)
+                    HtmlNode mdnode1 = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='keywords']");
+                    if (mdnode1 != null)
                     {
                         HtmlAttribute key;
-                        key = mdnode.Attributes["content"];
+                        key = mdnode1.Attributes["content"];
                         string keywords = key.Value;
                         label8.Text = keywords;
+                    }
+
+                    //description
+                    HtmlNode mdnode2 = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name='description']");
+                    if (mdnode2 != null)
+                    {
+                        HtmlAttribute descr;
+                        descr = mdnode2.Attributes["content"];
+                        string descrip = descr.Value;
+                        label9.Text = descrip;
                     }
 
                 }

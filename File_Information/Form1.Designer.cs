@@ -54,6 +54,8 @@
             this.rbHtml = new System.Windows.Forms.RadioButton();
             this.label107 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label108 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -115,7 +117,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(64, 364);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(953, 210);
+            this.richTextBox1.Size = new System.Drawing.Size(953, 97);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
@@ -263,12 +265,11 @@
             // 
             // richTextBox3
             // 
-            this.richTextBox3.Location = new System.Drawing.Point(63, 580);
+            this.richTextBox3.Location = new System.Drawing.Point(63, 467);
             this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(233, 35);
+            this.richTextBox3.Size = new System.Drawing.Size(954, 148);
             this.richTextBox3.TabIndex = 27;
             this.richTextBox3.Text = "";
-            this.richTextBox3.Visible = false;
             // 
             // rbHtml
             // 
@@ -299,11 +300,31 @@
             this.label8.TabIndex = 30;
             this.label8.Text = "label8";
             // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Location = new System.Drawing.Point(61, 334);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(83, 17);
+            this.label108.TabIndex = 31;
+            this.label108.Text = "Description:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(156, 334);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 17);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "label9";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 627);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label108);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label107);
             this.Controls.Add(this.rbHtml);
@@ -365,6 +386,8 @@
         private System.Windows.Forms.RadioButton rbHtml;
         private System.Windows.Forms.Label label107;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label108;
+        private System.Windows.Forms.Label label9;
     }
 }
 
