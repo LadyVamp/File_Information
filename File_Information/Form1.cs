@@ -39,6 +39,12 @@ namespace File_Information
                 LoadMyHtml();
         }
 
+        public void ClearRtb()
+        {
+            richTextBox1.Clear();
+            richTextBox2.Clear();
+            richTextBox3.Clear();
+        }
         public void LoadMyDoc()
         {
             // Create an OpenFileDialog to request a file to open.
@@ -47,6 +53,7 @@ namespace File_Information
             // Initialize the OpenFileDialog to look for DOC files.
             f.DefaultExt = "*.doc";
             f.Filter = "DOC Files|*.doc";
+            ClearRtb();
 
             try
             {
@@ -57,8 +64,7 @@ namespace File_Information
                     // Load the contents of the file into the RichTextBox.
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
-                    richTextBox2.Clear();
-                    richTextBox3.Clear();
+                    
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     //в rbt3 текст без стилей и почищенный от стоп-слов
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
@@ -77,14 +83,14 @@ namespace File_Information
             OpenFileDialog f = new OpenFileDialog();
             f.DefaultExt = "*.rtf";
             f.Filter = "RTF Files|*.rtf";
+            ClearRtb();
             try
             {
                 if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
                 {
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
-                    richTextBox2.Clear();
-                    richTextBox3.Clear();
+                    //ClearRtb();
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
                 }
@@ -100,6 +106,7 @@ namespace File_Information
             OpenFileDialog f = new OpenFileDialog();
             f.DefaultExt = "*.html";
             f.Filter = "HTML Files|*.html";
+            ClearRtb();
             try
             {
                 if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
@@ -107,8 +114,6 @@ namespace File_Information
                     HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
                     htmlDoc.Load(f.FileName, true); //true чтобы русские символы были не иероглифами
                     GetFileInformation(f.FileName);
-                    richTextBox2.Clear();
-                    richTextBox3.Clear();
                     ////удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     //richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
 
@@ -156,14 +161,13 @@ namespace File_Information
             OpenFileDialog f = new OpenFileDialog();
             f.DefaultExt = "*.docx";
             f.Filter = "DOCX Files|*.docx";
+            ClearRtb();
             try
             {
                 if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
                 {
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
-                    richTextBox2.Clear();
-                    richTextBox3.Clear();
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
                 }
@@ -246,12 +250,6 @@ namespace File_Information
                     MessageBox.Show(ex.Message);
                     connection.Close();
                 }
-
-
-
-
-
-
 
             }
         }
