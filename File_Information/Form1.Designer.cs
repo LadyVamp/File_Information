@@ -40,20 +40,22 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.label102 = new System.Windows.Forms.Label();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label106 = new System.Windows.Forms.Label();
+            this.label100 = new System.Windows.Forms.Label();
+            this.label101 = new System.Windows.Forms.Label();
+            this.label104 = new System.Windows.Forms.Label();
+            this.label105 = new System.Windows.Forms.Label();
             this.rbDocx = new System.Windows.Forms.RadioButton();
             this.button3 = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.rbHtml = new System.Windows.Forms.RadioButton();
-            this.label15 = new System.Windows.Forms.Label();
+            this.label107 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label108 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -113,9 +115,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(64, 328);
+            this.richTextBox1.Location = new System.Drawing.Point(64, 364);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(953, 246);
+            this.richTextBox1.Size = new System.Drawing.Size(953, 210);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
@@ -169,68 +171,68 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "label4";
             // 
-            // label16
+            // label102
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(60, 156);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(88, 17);
-            this.label16.TabIndex = 17;
-            this.label16.Text = "Date Create:";
+            this.label102.AutoSize = true;
+            this.label102.Location = new System.Drawing.Point(60, 156);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(88, 17);
+            this.label102.TabIndex = 17;
+            this.label102.Text = "Date Create:";
             // 
-            // label9
+            // label103
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(60, 188);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(95, 17);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Date Change:";
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(60, 188);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(95, 17);
+            this.label103.TabIndex = 18;
+            this.label103.Text = "Date Change:";
             // 
-            // label10
+            // label106
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(61, 283);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(68, 17);
-            this.label10.TabIndex = 19;
-            this.label10.Text = "Size (kb):";
+            this.label106.AutoSize = true;
+            this.label106.Location = new System.Drawing.Point(61, 283);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(68, 17);
+            this.label106.TabIndex = 19;
+            this.label106.Text = "Size (kb):";
             // 
-            // label11
+            // label100
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(61, 95);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(39, 17);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "Title:";
+            this.label100.AutoSize = true;
+            this.label100.Location = new System.Drawing.Point(61, 95);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(39, 17);
+            this.label100.TabIndex = 20;
+            this.label100.Text = "Title:";
             // 
-            // label12
+            // label101
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(60, 123);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(44, 17);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Type:";
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(60, 123);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(44, 17);
+            this.label101.TabIndex = 21;
+            this.label101.Text = "Type:";
             // 
-            // label13
+            // label104
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(61, 223);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 17);
-            this.label13.TabIndex = 22;
-            this.label13.Text = "Path:";
+            this.label104.AutoSize = true;
+            this.label104.Location = new System.Drawing.Point(61, 223);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(41, 17);
+            this.label104.TabIndex = 22;
+            this.label104.Text = "Path:";
             // 
-            // label14
+            // label105
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(61, 252);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(67, 17);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "Full Path:";
+            this.label105.AutoSize = true;
+            this.label105.Location = new System.Drawing.Point(61, 252);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(67, 17);
+            this.label105.TabIndex = 23;
+            this.label105.Text = "Full Path:";
             // 
             // rbDocx
             // 
@@ -281,14 +283,14 @@
             this.rbHtml.Text = "html";
             this.rbHtml.UseVisualStyleBackColor = true;
             // 
-            // label15
+            // label107
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(61, 308);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(73, 17);
-            this.label15.TabIndex = 29;
-            this.label15.Text = "Keywords:";
+            this.label107.AutoSize = true;
+            this.label107.Location = new System.Drawing.Point(61, 308);
+            this.label107.Name = "label107";
+            this.label107.Size = new System.Drawing.Size(73, 17);
+            this.label107.TabIndex = 29;
+            this.label107.Text = "Keywords:";
             // 
             // label8
             // 
@@ -299,25 +301,45 @@
             this.label8.TabIndex = 30;
             this.label8.Text = "label8";
             // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Location = new System.Drawing.Point(61, 333);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(40, 17);
+            this.label108.TabIndex = 31;
+            this.label108.Text = "URL:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(156, 333);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 17);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "label9";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 627);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label108);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label107);
             this.Controls.Add(this.rbHtml);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.rbDocx);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label105);
+            this.Controls.Add(this.label104);
+            this.Controls.Add(this.label101);
+            this.Controls.Add(this.label100);
+            this.Controls.Add(this.label106);
+            this.Controls.Add(this.label103);
+            this.Controls.Add(this.label102);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
@@ -351,20 +373,22 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label102;
+        private System.Windows.Forms.Label label103;
+        private System.Windows.Forms.Label label106;
+        private System.Windows.Forms.Label label100;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.Label label104;
+        private System.Windows.Forms.Label label105;
         private System.Windows.Forms.RadioButton rbDocx;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RadioButton rbHtml;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label107;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label108;
+        private System.Windows.Forms.Label label9;
     }
 }
 

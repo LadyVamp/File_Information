@@ -126,6 +126,16 @@ namespace File_Information
                         label8.Text = keywords;
                     }
 
+                    //URL
+                    HtmlNode mdnode1 = htmlDoc.DocumentNode.SelectSingleNode("//meta[@property='og: url']");
+                    if (mdnode1 != null)
+                    {
+                        HtmlAttribute url;
+                        url = mdnode1.Attributes["content"];
+                        string url1 = url.Value;
+                        label9.Text = url1;
+                    }
+
                     //TODO: 
                     // 1. загрузить в БД инфу о html с ключевыми словами
                     // 2. msgbox: вы действительно хотите загрузить файл в бд???
