@@ -46,10 +46,10 @@ namespace File_Information
             richTextBox3.Clear();
         }
 
-        public void ClearLabel()
+        public void ClearTxt()
         {
-            label8.Text = "";
-            label9.Text = "";
+            txtKeywords.Text = "";
+            txtDescription.Text = "";
 
         }
         public void LoadMyDoc()
@@ -61,7 +61,7 @@ namespace File_Information
             f.DefaultExt = "*.doc";
             f.Filter = "DOC Files|*.doc";
             ClearRtb();
-            ClearLabel();
+            ClearTxt();
             try
             {
                 // Determine whether the user selected a file from the OpenFileDialog.
@@ -91,7 +91,7 @@ namespace File_Information
             f.DefaultExt = "*.rtf";
             f.Filter = "RTF Files|*.rtf";
             ClearRtb();
-            ClearLabel();
+            ClearTxt();
             try
             {
                 if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
@@ -115,7 +115,7 @@ namespace File_Information
             f.DefaultExt = "*.html";
             f.Filter = "HTML Files|*.html";
             ClearRtb();
-            ClearLabel();
+            ClearTxt();
             try
             {
                 if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
@@ -141,7 +141,8 @@ namespace File_Information
                         HtmlAttribute key;
                         key = mdnode1.Attributes["content"];
                         string keywords = key.Value;
-                        label8.Text = keywords;
+                        //label8.Text = keywords;
+                        txtKeywords.Text = keywords;
                     }
 
                     //description
@@ -151,7 +152,8 @@ namespace File_Information
                         HtmlAttribute descr;
                         descr = mdnode2.Attributes["content"];
                         string descrip = descr.Value;
-                        label9.Text = descrip;
+                        //label9.Text = descrip;
+                        txtDescription.Text = descrip;
                     }
 
                 }
@@ -171,7 +173,7 @@ namespace File_Information
             f.DefaultExt = "*.docx";
             f.Filter = "DOCX Files|*.docx";
             ClearRtb();
-            ClearLabel();
+            ClearTxt();
             try
             {
                 if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK && f.FileName.Length > 0)
@@ -233,7 +235,7 @@ namespace File_Information
                 string dateChange = label4.Text; //  дата изменения
                 string path = label6.Text;  //путь к файлу для загрузки
                 string size = label7.Text; // размер
-                string keyword = label8.Text; // ключевые слова
+                string keyword = txtKeywords.Text; // ключевые слова
                 string fileContent = richTextBox1.Text; // содержимое
 
                 // передаем данные в команду через параметры
@@ -375,7 +377,7 @@ namespace File_Information
                 try
                 {
                     average = cntSymbol / cntWord;
-                    richTextBox2.Text = " Кол-во слов в тексте: " + cntWord.ToString() + "\n\n " + " Кол-во символов в тексте: " + cntSymbol.ToString() + "\n\n " + " Среднее кол-во символов в слове: " + average.ToString() + "\n\n " + "Наиболее повторяющиеся слова в тексте:\n";
+                    richTextBox2.Text = " Кол-во слов в тексте: " + cntWord.ToString() + "\n" + " Кол-во символов в тексте: " + cntSymbol.ToString() + "\n" + " Среднее кол-во символов в слове: " + average.ToString() + "\n" + " Наиболее повторяющиеся слова в тексте:\n";
                     string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", "\t", "\v", "\f", "|", Environment.NewLine };
                     List<string> list = new List<string>();
                     list = richTextBox3.Text.Split(splits, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -393,9 +395,7 @@ namespace File_Information
                                 n++;
                             }
                             words.Add(new Word(value, n));
-                        }
-                    //foreach (Word item in words)
-                    //    item.word = Regex.Replace(item.word, @"\b[а-яА-Я]{1,3}\b", string.Empty);
+                        }                 
 
                     words.Sort(comparase);
                         if (words.Count >= 21) words.RemoveRange(21, words.Count - 21);
@@ -403,6 +403,7 @@ namespace File_Information
                     foreach (Word item in words)
                     {
                         if (item.word.Length > 2) //длина слова >2, чтобы убрать "я", "с" и цифры
+                        //    item.word = Regex.Replace(item.word, @"\b[а-яА-Я]{1,2}\b", string.Empty); //регулярка не сработала :(
                         richTextBox2.AppendText("\n" + " " + item.word + " - " + item.count.ToString());
                     }
                     

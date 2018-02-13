@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -53,9 +54,10 @@
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.rbHtml = new System.Windows.Forms.RadioButton();
             this.label107 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label108 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.txtKeywords = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -291,15 +293,6 @@
             this.label107.TabIndex = 29;
             this.label107.Text = "Keywords:";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(156, 308);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 17);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "label8";
-            // 
             // label108
             // 
             this.label108.AutoSize = true;
@@ -309,23 +302,34 @@
             this.label108.TabIndex = 31;
             this.label108.Text = "Description:";
             // 
-            // label9
+            // contextMenuStrip1
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(156, 334);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 17);
-            this.label9.TabIndex = 32;
-            this.label9.Text = "label9";
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // txtKeywords
+            // 
+            this.txtKeywords.Location = new System.Drawing.Point(157, 308);
+            this.txtKeywords.Name = "txtKeywords";
+            this.txtKeywords.Size = new System.Drawing.Size(384, 22);
+            this.txtKeywords.TabIndex = 34;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(157, 336);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(384, 22);
+            this.txtDescription.TabIndex = 35;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 636);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.txtKeywords);
             this.Controls.Add(this.label108);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label107);
             this.Controls.Add(this.rbHtml);
             this.Controls.Add(this.richTextBox3);
@@ -385,9 +389,10 @@
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RadioButton rbHtml;
         private System.Windows.Forms.Label label107;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label108;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox txtKeywords;
+        private System.Windows.Forms.TextBox txtDescription;
     }
 }
 
