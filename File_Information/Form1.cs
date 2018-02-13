@@ -71,9 +71,6 @@ namespace File_Information
                     // Load the contents of the file into the RichTextBox.
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
-                    //GetDescription();
-                    //TruncateLongString(richTextBox3.Text, 100);
-
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     //в rbt3 текст без стилей и почищенный от стоп-слов
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
@@ -157,6 +154,11 @@ namespace File_Information
 
                     //post
                     HtmlNode[] post = htmlDoc.DocumentNode.SelectNodes("//div[@class='post__body post__body_full']").Where(x => x.InnerHtml.Contains("post__text")).ToArray();
+                    //удалить теги с содержимым
+                    htmlDoc.DocumentNode.Descendants()
+                                    .Where(n => n.Name == "script" || n.Name == "style" || n.Name == "img" || n.Name == "br" || n.Name == "a")
+                                    .ToList()
+                                    .ForEach(n => n.Remove());
                     foreach (HtmlNode item in post)
                     {
                         richTextBox3.AppendText(item.InnerHtml);
