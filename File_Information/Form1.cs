@@ -155,6 +155,13 @@ namespace File_Information
                         rtbDescription.Text = descrip;
                     }
 
+                    //post
+                    HtmlNode[] post = htmlDoc.DocumentNode.SelectNodes("//div[@class='post__body post__body_full']").Where(x => x.InnerHtml.Contains("post__text")).ToArray();
+                    foreach (HtmlNode item in post)
+                    {
+                        richTextBox3.AppendText(item.InnerHtml);
+                    }
+
                 }
             }
             catch (TypeInitializationException ex)
