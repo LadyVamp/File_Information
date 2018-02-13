@@ -57,7 +57,7 @@
             this.label108 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.txtKeywords = new System.Windows.Forms.TextBox();
-            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.rtbDescription = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -315,19 +315,20 @@
             this.txtKeywords.Size = new System.Drawing.Size(384, 22);
             this.txtKeywords.TabIndex = 34;
             // 
-            // txtDescription
+            // rtbDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(157, 336);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(384, 22);
-            this.txtDescription.TabIndex = 35;
+            this.rtbDescription.Location = new System.Drawing.Point(157, 336);
+            this.rtbDescription.Name = "rtbDescription";
+            this.rtbDescription.Size = new System.Drawing.Size(384, 52);
+            this.rtbDescription.TabIndex = 36;
+            this.rtbDescription.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 636);
-            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.rtbDescription);
             this.Controls.Add(this.txtKeywords);
             this.Controls.Add(this.label108);
             this.Controls.Add(this.label107);
@@ -392,7 +393,7 @@
         private System.Windows.Forms.Label label108;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox txtKeywords;
-        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.RichTextBox rtbDescription;
     }
 }
 

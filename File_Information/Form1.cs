@@ -49,7 +49,7 @@ namespace File_Information
         public void ClearTxt()
         {
             txtKeywords.Text = "";
-            txtDescription.Text = "";
+            rtbDescription.Text = "";
         }
 
         //public void GetDescription()
@@ -98,7 +98,7 @@ namespace File_Information
             }
             catch (TypeInitializationException ex)
             {
-                MessageBox.Show(ex.Message, "В словаре стоп-слов есть повтор!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("В словаре стоп-слов есть повтор!!!", ex.Message,  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -126,7 +126,7 @@ namespace File_Information
             }
             catch (TypeInitializationException ex)
             {
-                MessageBox.Show(ex.Message, "В словаре стоп-слов есть повтор!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("В словаре стоп-слов есть повтор!!!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -172,14 +172,14 @@ namespace File_Information
                         HtmlAttribute descr;
                         descr = mdnode2.Attributes["content"];
                         string descrip = descr.Value;
-                        txtDescription.Text = descrip;
+                        rtbDescription.Text = descrip;
                     }
 
                 }
             }
             catch (TypeInitializationException ex)
             {
-                MessageBox.Show(ex.Message, "В словаре стоп-слов есть повтор!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("В словаре стоп-слов есть повтор!!!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -323,7 +323,7 @@ namespace File_Information
                { "кое-куда", true }, { "какой-либо", true }, { "сколько-нибудь", true }, { "куда-нибудь", true }, { "зачем-нибудь", true },
                { "чей-либо", true }, { "это", true }, { "т", true }, { "public", true }, { "можно", true }, { "i", true }, { "иногда", true }, { "желательно", true }, { "p", true },
                { "при", true }, { "почему", true }, { "еще", true }, { "теперь", true }, { "самое", true }, { "во-первых", true }, { "во-вторых", true }, { "в-третьих", true }, { "вообще", true },
-               { "of", true }, { "the", true }, { "некоторое", true }
+               { "of", true }, { "the", true }, { "некоторое", true }, { "после", true }, { "тем", true }
             };
 
                 /// <summary>
@@ -398,7 +398,8 @@ namespace File_Information
                 {
                     average = cntSymbol / cntWord;
                     richTextBox2.Text = " Кол-во слов в тексте: " + cntWord.ToString() + "\n" + " Кол-во символов в тексте: " + cntSymbol.ToString() + "\n" + " Среднее кол-во символов в слове: " + average.ToString() + "\n" + " Наиболее повторяющиеся слова в тексте:\n";
-                    string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", "\t", "\v", "\f", "|", Environment.NewLine };
+                    string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", "\t", "\v", "\f", "|", "_", "`", Environment.NewLine };
+
                     List<string> list = new List<string>();
                     list = richTextBox3.Text.Split(splits, StringSplitOptions.RemoveEmptyEntries).ToList();
                     List<Word> words = new List<Word>();
@@ -435,12 +436,12 @@ namespace File_Information
                 {
                     MessageBox.Show("Сначала выберите файл!!!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            
-           
 
-
-
-
+            //для description, первые 500 символов
+            string original = richTextBox1.Text;
+            int maxLength = 500;
+            string first500 = original.Substring(0, Math.Min(original.Length, maxLength));
+            rtbDescription.AppendText(first500);
 
         }
 
