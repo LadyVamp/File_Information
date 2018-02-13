@@ -50,8 +50,25 @@ namespace File_Information
         {
             txtKeywords.Text = "";
             txtDescription.Text = "";
-
         }
+
+        //public void GetDescription()
+        //{
+        //    //string str = richTextBox3.Text;
+        //    //int maxLength = 100;
+        //    //string result = str.Substring(0, Math.Min(str.Length, maxLength));
+
+        //    ////Console.WriteLine(result);
+        //    //txtDescription.Text = result;
+
+        //}
+
+        //public static string TruncateLongString(this string str, int maxLength)
+        //     public void TruncateLongString(this string str, int maxLength)
+        //{
+        //    return str.Substring(0, Math.Min(str.Length, maxLength));
+        //}
+
         public void LoadMyDoc()
         {
             // Create an OpenFileDialog to request a file to open.
@@ -71,7 +88,9 @@ namespace File_Information
                     // Load the contents of the file into the RichTextBox.
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
-                    
+                    //GetDescription();
+                    //TruncateLongString(richTextBox3.Text, 100);
+
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     //в rbt3 текст без стилей и почищенный от стоп-слов
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
@@ -98,6 +117,8 @@ namespace File_Information
                 {
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
+                    //GetDescription();
+                    //TruncateLongString(richTextBox3.Text, 100);
                     //ClearRtb();
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
@@ -141,7 +162,6 @@ namespace File_Information
                         HtmlAttribute key;
                         key = mdnode1.Attributes["content"];
                         string keywords = key.Value;
-                        //label8.Text = keywords;
                         txtKeywords.Text = keywords;
                     }
 
@@ -152,7 +172,6 @@ namespace File_Information
                         HtmlAttribute descr;
                         descr = mdnode2.Attributes["content"];
                         string descrip = descr.Value;
-                        //label9.Text = descrip;
                         txtDescription.Text = descrip;
                     }
 
@@ -303,7 +322,8 @@ namespace File_Information
                { "некий", true }, { "некоторый", true }, { "несколько", true }, { "кое-кто", true }, { "кое-где", true }, { "кое-что", true },
                { "кое-куда", true }, { "какой-либо", true }, { "сколько-нибудь", true }, { "куда-нибудь", true }, { "зачем-нибудь", true },
                { "чей-либо", true }, { "это", true }, { "т", true }, { "public", true }, { "можно", true }, { "i", true }, { "иногда", true }, { "желательно", true }, { "p", true },
-               { "при", true }, { "почему", true }, { "еще", true }, { "теперь", true }, { "самое", true }, { "во-первых", true }, { "во-вторых", true }, { "в-третьих", true }, { "вообще", true }
+               { "при", true }, { "почему", true }, { "еще", true }, { "теперь", true }, { "самое", true }, { "во-первых", true }, { "во-вторых", true }, { "в-третьих", true }, { "вообще", true },
+               { "of", true }, { "the", true }, { "некоторое", true }
             };
 
                 /// <summary>
@@ -398,15 +418,18 @@ namespace File_Information
                         }                 
 
                     words.Sort(comparase);
-                        if (words.Count >= 21) words.RemoveRange(21, words.Count - 21);
-               
+                        if (words.Count >= 15) words.RemoveRange(15, words.Count - 15);
+
                     foreach (Word item in words)
                     {
                         if (item.word.Length > 2) //длина слова >2, чтобы убрать "я", "с" и цифры
-                        //    item.word = Regex.Replace(item.word, @"\b[а-яА-Я]{1,2}\b", string.Empty); //регулярка не сработала :(
-                        richTextBox2.AppendText("\n" + " " + item.word + " - " + item.count.ToString());
+                        {
+                            richTextBox2.AppendText("\n" + " " + item.word + " (" + item.count.ToString() + ")");
+                            txtKeywords.AppendText(item.word + ", ");                    
+                        }
                     }
-                    
+                    txtKeywords.Text = txtKeywords.Text.Remove((txtKeywords.Text.Length - 2)); //удалить запятую и пробел в конце
+
             }
                 catch (DivideByZeroException ex)
                 {
