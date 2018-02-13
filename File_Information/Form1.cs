@@ -174,7 +174,7 @@ namespace File_Information
             }
             catch (TypeInitializationException ex)
             {
-                MessageBox.Show(ex.Message, "В словаре стоп-слов есть повтор!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("В словаре стоп-слов есть повтор!!!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -278,7 +278,7 @@ namespace File_Information
                { "ведь", true }, { "ни", true }, { "уж", true }, { "уже", true }, { " то", true }, { "всё-таки", true }, { "все же", true },
                { "не", true }, { "нет", true }, { "вовсе не", true }, { "отнюдь не", true }, { "ага", true }, { "угу", true }, { "вот", true }, { "вон", true }, { "вот и", true }, { "всего лишь", true },
                { "единственно", true }, { "почти", true }, { "исключительно", true }, { "именно", true }, { "прямо", true }, { "всего", true }, { " в точности", true }, { "едва ли", true }, { "вряд ли", true },
-               { "навряд ли", true }, { "авось", true }, { "я", true }, { "мы", true }, { "ты", true }, { "вы", true }, { "он", true }, { "она", true }, { "оно", true }, { "они", true },
+               { "навряд ли", true }, { "авось", true }, { "я", true }, { " я", true }, { "я ", true },{ " я ", true },  { "мы", true }, { "ты", true }, { "вы", true }, { "он", true }, { "она", true }, { "оно", true }, { "они", true },
                { "себя", true }, { "мой", true }, { "моя", true }, { "мое", true }, { "мои", true }, { "наш", true }, { "наша", true }, { "наше", true },
                { "наши", true }, { "твой", true }, { "твоя", true }, { "твое", true }, { "твои", true }, { "ваш", true }, { "ваша", true }, { "ваше", true },
                { "ваши", true }, { "его", true }, { "ему", true }, { "ее", true }, { "их", true }, { "	кто", true }, { "какой", true }, { "каков", true },
@@ -291,7 +291,7 @@ namespace File_Information
                { "некий", true }, { "некоторый", true }, { "несколько", true }, { "кое-кто", true }, { "кое-где", true }, { "кое-что", true },
                { "кое-куда", true }, { "какой-либо", true }, { "сколько-нибудь", true }, { "куда-нибудь", true }, { "зачем-нибудь", true },
                { "чей-либо", true }, { "это", true }, { "т", true }, { "public", true }, { "можно", true }, { "i", true }, { "иногда", true }, { "желательно", true }, { "p", true },
-               { "при", true }, { "почему", true }, { "еще", true }, { "теперь", true }
+               { "при", true }, { "почему", true }, { "еще", true }, { "теперь", true }, { "самое", true }, { "во-первых", true }, { "во-вторых", true }, { "в-третьих", true }, { "вообще", true }, { " и ", true }, { "и ", true }, { " и", true }
             };
 
                 /// <summary>
@@ -361,33 +361,45 @@ namespace File_Information
             string[] slova = richTextBox3.Text.Split(new char[] { ' ', ',', '.', '!', ':', '?', ';', }, StringSplitOptions.RemoveEmptyEntries); //разбить текст на слова
             cntWord = slova.Length;
             cntSymbol = richTextBox3.Text.Length;
-            average = cntSymbol / cntWord;
-            richTextBox2.Text = " Количество слов в тексте: " + cntWord.ToString() + "\n\n " + " Количество символов в тексте: " + cntSymbol.ToString() + "\n\n " + " Среднее количество символов в слове: " + average.ToString() + "\n\n " + "Двадцать наиболее повторяющихся слов в тексте:\n";
-            int pov = slova.Length;
-
-            string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", "\t", "\v", "\f", "|", Environment.NewLine };
-            List<string> list = new List<string>();
-            list = richTextBox3.Text.Split(splits, StringSplitOptions.RemoveEmptyEntries).ToList();
-            List<Word> words = new List<Word>();
-            var duplicate_words = list.GroupBy(x => x.ToLower()).Where(x => x.Count() > 1).Select(x => x.Key.ToLower());
-
-            foreach (string value in duplicate_words.ToList())
+            try
             {
-                Regex reg = new Regex(value + " ", RegexOptions.IgnoreCase);
-                int n = 0;
-                foreach (Match match in reg.Matches(richTextBox3.Text))
-                {
-                    richTextBox3.Select(match.Index, match.Length);
-                    n++;
-                }
-                words.Add(new Word(value, n));
+                    average = cntSymbol / cntWord;
+                    richTextBox2.Text = " Кол-во слов в тексте: " + cntWord.ToString() + "\n\n " + " Кол-во символов в тексте: " + cntSymbol.ToString() + "\n\n " + " Среднее кол-во символов в слове: " + average.ToString() + "\n\n " + "20 наиболее повторяющихся слов в тексте:\n";
+                    int pov = slova.Length;
+
+                    string[] splits = { ".", " ", ",", ":", ";", "<", ">", "!", "@", "#", "$", "%", "^", "&", "+", ")", "(", "{", "}", "[", "]", "\n", "\r", "<i>", "*", "\t", "\v", "\f", "|", Environment.NewLine };
+                    List<string> list = new List<string>();
+                    list = richTextBox3.Text.Split(splits, StringSplitOptions.RemoveEmptyEntries).ToList();
+                    List<Word> words = new List<Word>();
+                    var duplicate_words = list.GroupBy(x => x.ToLower()).Where(x => x.Count() > 1).Select(x => x.Key.ToLower());
+
+                foreach (string value in duplicate_words.ToList())
+                    {
+                        Regex reg = new Regex(value + " ", RegexOptions.IgnoreCase);
+                        int n = 0;
+                        foreach (Match match in reg.Matches(richTextBox3.Text))
+                        {
+                            richTextBox3.Select(match.Index, match.Length);
+                            n++;
+                        }
+                        words.Add(new Word(value, n));
+                    }
+
+                    words.Sort(comparase);
+                    if (words.Count >= 21) words.RemoveRange(21, words.Count - 21);
+
+                    foreach (Word item in words)
+                        richTextBox2.AppendText("\n" + " " + item.word + " - " + item.count.ToString());
+            }
+            catch (DivideByZeroException ex)
+            {
+                MessageBox.Show("Сначала выберите файл!!!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            words.Sort(comparase);
-            if (words.Count >= 21) words.RemoveRange(21, words.Count - 21);
 
-            foreach (Word item in words)
-                richTextBox2.AppendText("\n" + " " + item.word + " - " + item.count.ToString());
+
+
+
         }
 
 
