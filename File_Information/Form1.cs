@@ -251,7 +251,7 @@ namespace File_Information
                 string path = label6.Text;  //путь к файлу для загрузки
                 string size = label7.Text; // размер
                 string keyword = txtKeywords.Text; // ключевые слова
-                string fileContent = richTextBox1.Text; // содержимое
+                string fileContent = richTextBox3.Text; // содержимое
 
                 // передаем данные в команду через параметры
                 command.Parameters["@Title"].Value = title;
@@ -440,6 +440,8 @@ namespace File_Information
 
         }
 
-
+        //TODO
+        //добавить description (аннотация) в БД
+        //добавить этот модуль к основной проге
     }
 }
