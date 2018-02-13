@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,7 +54,6 @@
             this.rbHtml = new System.Windows.Forms.RadioButton();
             this.label107 = new System.Windows.Forms.Label();
             this.label108 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.txtKeywords = new System.Windows.Forms.TextBox();
             this.rtbDescription = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
@@ -117,9 +115,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(574, 39);
+            this.richTextBox1.Location = new System.Drawing.Point(580, 38);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(349, 587);
+            this.richTextBox1.Size = new System.Drawing.Size(430, 587);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
@@ -267,9 +265,9 @@
             // 
             // richTextBox3
             // 
-            this.richTextBox3.Location = new System.Drawing.Point(929, 39);
+            this.richTextBox3.Location = new System.Drawing.Point(1016, 37);
             this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(353, 587);
+            this.richTextBox3.Size = new System.Drawing.Size(430, 587);
             this.richTextBox3.TabIndex = 27;
             this.richTextBox3.Text = "";
             // 
@@ -302,12 +300,6 @@
             this.label108.TabIndex = 31;
             this.label108.Text = "Description:";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // txtKeywords
             // 
             this.txtKeywords.Location = new System.Drawing.Point(157, 308);
@@ -327,7 +319,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1294, 636);
+            this.ClientSize = new System.Drawing.Size(1470, 636);
             this.Controls.Add(this.rtbDescription);
             this.Controls.Add(this.txtKeywords);
             this.Controls.Add(this.label108);
@@ -391,7 +383,6 @@
         private System.Windows.Forms.RadioButton rbHtml;
         private System.Windows.Forms.Label label107;
         private System.Windows.Forms.Label label108;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox txtKeywords;
         private System.Windows.Forms.RichTextBox rtbDescription;
     }

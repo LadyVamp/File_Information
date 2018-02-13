@@ -153,17 +153,24 @@ namespace File_Information
                     }
 
                     //post
-                    HtmlNode[] post = htmlDoc.DocumentNode.SelectNodes("//div[@class='post__body post__body_full']").Where(x => x.InnerHtml.Contains("post__text")).ToArray();
-                    //удалить теги с содержимым
-                    htmlDoc.DocumentNode.Descendants()
-                                    .Where(n => n.Name == "script" || n.Name == "style" || n.Name == "img" || n.Name == "br" || n.Name == "a")
-                                    .ToList()
-                                    .ForEach(n => n.Remove());
-                    foreach (HtmlNode item in post)
+                    try
                     {
-                        richTextBox3.AppendText(item.InnerHtml);
+                        HtmlNode[] post = htmlDoc.DocumentNode.SelectNodes("//div[@class='post__body post__body_full']").Where(x => x.InnerHtml.Contains("post__text")).ToArray();
+                        //удалить теги с содержимым
+                        htmlDoc.DocumentNode.Descendants()
+                                        .Where(n => n.Name == "script" || n.Name == "style" || n.Name == "img" || n.Name == "br" || n.Name == "a")
+                                        .ToList()
+                                        .ForEach(n => n.Remove());
+                        foreach (HtmlNode item in post)
+                        {
+                            richTextBox3.AppendText(item.InnerText); //InnerText для удаления тегов без удаления содержимого
+                        }
                     }
-
+                    catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show("Отсутствует класс post__body post__body_full", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                   
                 }
             }
             catch (TypeInitializationException ex)
