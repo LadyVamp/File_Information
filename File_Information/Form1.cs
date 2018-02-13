@@ -52,23 +52,6 @@ namespace File_Information
             rtbDescription.Text = "";
         }
 
-        //public void GetDescription()
-        //{
-        //    //string str = richTextBox3.Text;
-        //    //int maxLength = 100;
-        //    //string result = str.Substring(0, Math.Min(str.Length, maxLength));
-
-        //    ////Console.WriteLine(result);
-        //    //txtDescription.Text = result;
-
-        //}
-
-        //public static string TruncateLongString(this string str, int maxLength)
-        //     public void TruncateLongString(this string str, int maxLength)
-        //{
-        //    return str.Substring(0, Math.Min(str.Length, maxLength));
-        //}
-
         public void LoadMyDoc()
         {
             // Create an OpenFileDialog to request a file to open.
@@ -117,9 +100,6 @@ namespace File_Information
                 {
                     richTextBox1.LoadFile(f.FileName);
                     GetFileInformation(f.FileName);
-                    //GetDescription();
-                    //TruncateLongString(richTextBox3.Text, 100);
-                    //ClearRtb();
                     //удалить стоп-слова из rtb1 и вставить результат в невидимый rtb3
                     richTextBox3.AppendText(StopwordTool.RemoveStopwords(richTextBox1.Text));
                 }
@@ -263,7 +243,6 @@ namespace File_Information
                 command.Parameters["@DateCreate"].Value = dateCreate;
                 command.Parameters["@DateChange"].Value = dateChange;
                 command.Parameters["@Size"].Value = size;
-                //command.Parameters["@Keywords"].Value = "test123";
                 command.Parameters["@Keywords"].Value = keyword;
                 command.Parameters["@Filecontent"].Value = fileContent;
                 command.Parameters["@CatalogId"].Value = 1;
@@ -431,8 +410,8 @@ namespace File_Information
                     }
                     txtKeywords.Text = txtKeywords.Text.Remove((txtKeywords.Text.Length - 2)); //удалить запятую и пробел в конце
 
-            }
-                catch (DivideByZeroException ex)
+                }
+                catch (DivideByZeroException ex) //файл не выбран => cntWord = 0 => деление на ноль
                 {
                     MessageBox.Show("Сначала выберите файл!!!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
