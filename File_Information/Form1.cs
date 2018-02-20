@@ -234,7 +234,7 @@ namespace File_Information
                 connection.Open();
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = @"INSERT INTO TFile VALUES (@Title, @Type, @DateCreate,  @DateChange, @Size, @Keywords, @Filecontent, @CatalogId)";
+                command.CommandText = @"INSERT INTO TFile VALUES (@Title, @Type, @DateCreate,  @DateChange, @Size, @Keywords, @Filecontent, @CatalogId, @Annotation)";
                 command.Parameters.Add("@Title", SqlDbType.NVarChar, 130);
                 command.Parameters.Add("@Type", SqlDbType.NVarChar, 10);
                 command.Parameters.Add("@DateCreate", SqlDbType.DateTime);
@@ -243,6 +243,7 @@ namespace File_Information
                 command.Parameters.Add("@Keywords", SqlDbType.NVarChar, 100);
                 command.Parameters.Add("@Filecontent", SqlDbType.NVarChar, 10000);
                 command.Parameters.Add("@CatalogId", SqlDbType.Int);
+                command.Parameters.Add("@Annotation", SqlDbType.NVarChar, 600);
 
                 string title = label1.Text; // заголовок файла
                 string type = label2.Text; // расширение
@@ -252,6 +253,7 @@ namespace File_Information
                 string size = label7.Text; // размер
                 string keyword = txtKeywords.Text; // ключевые слова
                 string fileContent = richTextBox3.Text; // содержимое
+                string annotation = rtbDescription.Text; // аннотация (для html - description)
 
                 // передаем данные в команду через параметры
                 command.Parameters["@Title"].Value = title;
@@ -262,6 +264,7 @@ namespace File_Information
                 command.Parameters["@Keywords"].Value = keyword;
                 command.Parameters["@Filecontent"].Value = fileContent;
                 command.Parameters["@CatalogId"].Value = 1;
+                command.Parameters["@Annotation"].Value = annotation;
 
                 try
                 {
